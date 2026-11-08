@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/yara-braids-favicon-512.png">
+    <link rel="stylesheet" href="style.css">
+    <title>Yara Braids</title>
+</head>
+
+<body>
+    <nav class="navegadorPai">
+        <div class="navegador">
+            <div>
+                <img src="img/logo.png" alt="Logo Yara Braids">
+            </div>
+
+            <button class="botaoMenu" id="botaoMenu" type="button" aria-label="Abrir menu" aria-expanded="false"
+                aria-controls="menuConteudo">
+                <i class="bi bi-list iconeAbrir"></i>
+                <i class="bi bi-x-lg iconeFechar"></i>
+            </button>
+
+            <div class="menuConteudo" id="menuConteudo">
+                <div class="menuNavegador">
+                    <a href="#">Início</a>
+                    <a href="#modelos">Modelos</a>
+                    <a href="#comoFunciona">Como funciona</a>
+                    <a href="#agendarHorario">Agendar Horário</a>
+                    <a href="#sobre">Sobre</a>
+                </div>
+                <div class="botaoNavegador">
+                    <a href="https://api.whatsapp.com/message/L7FXZNDNCJTNA1?autoload=1&app_absent=0&utm_source=ig">Entrar
+                        em contato</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <section id="inicio">
+            <div class="inicioPai">
+                <div class="iniciofilho1 botaoFilho">
+                    <h6>PATOS DE MINAS · MG</h6>
+                    <h5>Transformando os seus <span class="destaque">fios</span> em <span class="destaque">arte</span>
+                    </h5>
+                    <p>Mais que um penteado, uma forma de se expressar. Encontre a trança que combina com a sua história
+                        — e com o seu agora.</p>
+                    <a href="#agendarHorario"> Solicitar o meu horário <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div>
+                    <img src="img/yara.png" alt="Foto da Profissional Yara Braids">
+                </div>
+                <div class="iniciofilho2">
+                    <h6>MODELOS</h6>
+                    <h5>Descubra os nossos modelos</h5>
+                    <div class="listaModelos">
+                        <div>
+                            <p>Estilo X</p>
+                            <p>Estilo X</p>
+                            <p>Estilo X</p>
+                            <p>Estilo X</p>
+                        </div>
+                        <div>
+                            <p>Estilo X</p>
+                            <p>Estilo X</p>
+                            <p>Estilo X</p>
+                            <p>Estilo X</p>
+                        </div>
+                    </div>
+                    <a href="#modelos">Conferir todos os modelos <i class="bi bi-arrow-up-right"></i></a>
+                </div>
+            </div>
+            <div class="faixaModelos">
+                <div class="faixaTrilha">
+                    <ul class="faixaGrupo">
+                        <li><i class="bi bi-diamond"></i> Box Braids</li>
+                        <li><i class="bi bi-diamond"></i> Ghana Braids</li>
+                        <li><i class="bi bi-diamond"></i> Fio de Cristal</li>
+                        <li><i class="bi bi-diamond"></i> Freestyle</li>
+                    </ul>
+
+
+                    <ul class="faixaGrupo" aria-hidden="true">
+                        <li><i class="bi bi-diamond"></i> Box Braids</li>
+                        <li><i class="bi bi-diamond"></i> Ghana Braids</li>
+                        <li><i class="bi bi-diamond"></i> Fio de Cristal</li>
+                        <li><i class="bi bi-diamond"></i> Freestyle</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="modelos">
+            <div class="modeloPai">
+                <div class="modeloMae1">
+                    <div class="modeloFilho1">
+                        <h6>MODELO DE TRANÇAS</h6>
+                        <h5>Explore o catálogo e encontre a <span class="destaque">sua</span> trança</h5>
+                        <p>Do clássico ao ousado, aqui você encontra o modelo ideal para realçar ainda mais a sua beleza
+                            individual. Explore os estilos destacados e navegue pelo catálogo com mais clareza.</p>
+                    </div>
+                    <div>
+                        <img src="img/modelo.png" alt="Foto interativa de modelos">
+                    </div>
+                </div>
+                <div class="modeloFiltro">
+                    <button type="button" class="botaoTodosModelos ativo" id="botaoTodos">TODOS</button>
+                    <button type="button" id="botaoFiltrar" aria-expanded="false" aria-controls="listaFiltros"><i
+                            class="bi bi-funnel"></i> Filtrar</button>
+
+                    <div class="filtroLista" id="listaFiltros" hidden>
+                        <button type="button" data-alvo="modelo-1">Modelo 1</button>
+                        <button type="button" data-alvo="modelo-2">Modelo 2</button>
+                        <button type="button" data-alvo="modelo-3">Modelo 3</button>
+                    </div>
+                </div>
+                <div class="modelosTrancas">
+                    <div class="modeloCardmae">
+                        <div class="modelocardFilho" id="modelo-1">
+                            <div>
+                                <img src="img/modelox.png" alt="Modelo 1">
+                            </div>
+                            <div>
+                                <h4>DESTAQUE</h4>
+                                <h3>Modelo 1</h3>
+                                <p class="modeloPreco">R$xxx,xx</p>
+                                <div>
+                                    <a class="modeloAgendar" href="#agendarHorario"> <i
+                                            class="bi bi-calendar2-check-fill"></i> Agendar</a>
+                                    <a class="modeloSobre" href=""><i class="bi bi-exclamation-circle"></i> Sobre o
+                                        modelo</a>
+                                </div>
+
+                                <!-- Aparece em "Sobre o modelo" e também alimenta os selects do formulário -->
+                                <div class="modeloDetalhes" hidden>
+                                    <p>Descrição do modelo.</p>
+                                    <h4>Espessuras disponíveis</h4>
+                                    <ul class="listaEspessuras">
+                                        <li><strong>Fina</strong> – descrição da espessura fina.</li>
+                                        <li><strong>Média</strong> – descrição da espessura média.</li>
+                                    </ul>
+                                    <h4>Tamanhos</h4>
+                                    <ul class="listaTamanhos">
+                                        <li>Curto (ombros)</li>
+                                        <li>Médio (meio das costas)</li>
+                                        <li>Longo (cintura)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modelocardFilho">
+                            <div>
+                                <img src="img/modelox.png" alt="MODELO X">
+                            </div>
+                            <div>
+                                <span class="modeloEtiqueta">EXPLORE O SEU ESTILO</span>
+                                <h3>Modelo x</h3>
+                                <p>R$xxx,xx</p>
+                                <div>
+                                    <a class="modeloAgendar" href="#agendarHorario"> <i
+                                            class="bi bi-calendar2-check-fill"></i> Agendar</a>
+                                    <a class="modeloSobre" href=""><i class="bi bi-exclamation-circle"></i> Sobre o
+                                        modelo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modelocardFilho">
+                            <div>
+                                <img src="img/modelox.png" alt="MODELO X">
+                            </div>
+                            <div>
+                                <span class="modeloEtiqueta">EXPLORE O SEU ESTILO</span>
+                                <h3>Modelo x</h3>
+                                <p>R$xxx,xx</p>
+                                <div>
+                                    <a class="modeloAgendar" href="#agendarHorario"> <i
+                                            class="bi bi-calendar2-check-fill"></i> Agendar</a>
+                                    <a class="modeloSobre" href=""><i class="bi bi-exclamation-circle"></i> Sobre o
+                                        modelo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modelocardFilho">
+                            <div>
+                                <img src="img/modelox.png" alt="MODELO X">
+                            </div>
+                            <div>
+                                <span class="modeloEtiqueta">EXPLORE O SEU ESTILO</span>
+                                <h3>Modelo x</h3>
+                                <p>R$xxx,xx</p>
+                                <div>
+                                    <a class="modeloAgendar" href="#agendarHorario"> <i
+                                            class="bi bi-calendar2-check-fill"></i> Agendar</a>
+                                    <a class="modeloSobre" href=""><i class="bi bi-exclamation-circle"></i> Sobre o
+                                        modelo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modelocardFilho">
+                            <div>
+                                <img src="img/modelox.png" alt="MODELO X">
+                            </div>
+                            <div>
+                                <span class="modeloEtiqueta">EXPLORE O SEU ESTILO</span>
+                                <h3>Modelo x</h3>
+                                <p>R$xxx,xx</p>
+                                <div>
+                                    <a class="modeloAgendar" href="#agendarHorario"> <i
+                                            class="bi bi-calendar2-check-fill"></i> Agendar</a>
+                                    <a class="modeloSobre" href=""><i class="bi bi-exclamation-circle"></i> Sobre o
+                                        modelo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modelocardFilho">
+                            <div>
+                                <img src="img/modelox.png" alt="MODELO X">
+                            </div>
+                            <div>
+                                <span class="modeloEtiqueta">EXPLORE O SEU ESTILO</span>
+                                <h3>Modelo x</h3>
+                                <p>R$xxx,xx</p>
+                                <div>
+                                    <a class="modeloAgendar" href="#agendarHorario"> <i
+                                            class="bi bi-calendar2-check-fill"></i> Agendar</a>
+                                    <a class="modeloSobre" href=""><i class="bi bi-exclamation-circle"></i> Sobre o
+                                        modelo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modelocardFilho">
+                            <div>
+                                <img src="img/modelox.png" alt="MODELO X">
+                            </div>
+                            <div>
+                                <span class="modeloEtiqueta">EXPLORE O SEU ESTILO</span>
+                                <h3>Modelo x</h3>
+                                <p>R$xxx,xx</p>
+                                <div>
+                                    <a class="modeloAgendar" href="#agendarHorario"> <i
+                                            class="bi bi-calendar2-check-fill"></i> Agendar</a>
+                                    <a class="modeloSobre" href=""><i class="bi bi-exclamation-circle"></i> Sobre o
+                                        modelo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modelocardFilho">
+                            <div>
+                                <img src="img/modelox.png" alt="MODELO X">
+                            </div>
+                            <div>
+                                <span class="modeloEtiqueta">EXPLORE O SEU ESTILO</span>
+                                <h3>Modelo x</h3>
+                                <p>R$xxx,xx</p>
+                                <div>
+                                    <a class="modeloAgendar" href="#agendarHorario"> <i
+                                            class="bi bi-calendar2-check-fill"></i> Agendar</a>
+                                    <a class="modeloSobre" href=""><i class="bi bi-exclamation-circle"></i> Sobre o
+                                        modelo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modelocardFilho">
+                            <div>
+                                <img src="img/modelox.png" alt="MODELO X">
+                            </div>
+                            <div>
+                                <span class="modeloEtiqueta">EXPLORE O SEU ESTILO</span>
+                                <h3>Modelo x</h3>
+                                <p>R$xxx,xx</p>
+                                <div>
+                                    <a class="modeloAgendar" href="#agendarHorario"> <i
+                                            class="bi bi-calendar2-check-fill"></i> Agendar</a>
+                                    <a class="modeloSobre" href=""><i class="bi bi-exclamation-circle"></i> Sobre o
+                                        modelo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modelocardFilho">
+                            <div>
+                                <img src="img/modelox.png" alt="MODELO X">
+                            </div>
+                            <div>
+                                <span class="modeloEtiqueta">EXPLORE O SEU ESTILO</span>
+                                <h3>Modelo x</h3>
+                                <p>R$xxx,xx</p>
+                                <div>
+                                    <a class="modeloAgendar" href="#agendarHorario"> <i
+                                            class="bi bi-calendar2-check-fill"></i> Agendar</a>
+                                    <a class="modeloSobre" href=""><i class="bi bi-exclamation-circle"></i> Sobre o
+                                        modelo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modelocardFilho">
+                            <div>
+                                <img src="img/modelox.png" alt="MODELO X">
+                            </div>
+                            <div>
+                                <span class="modeloEtiqueta">EXPLORE O SEU ESTILO</span>
+                                <h3>Modelo x</h3>
+                                <p>R$xxx,xx</p>
+                                <div>
+                                    <a class="modeloAgendar" href="#agendarHorario"> <i
+                                            class="bi bi-calendar2-check-fill"></i> Agendar</a>
+                                    <a class="modeloSobre" href=""><i class="bi bi-exclamation-circle"></i> Sobre o
+                                        modelo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modelocardFilho">
+                            <div>
+                                <img src="img/modelox.png" alt="MODELO X">
+                            </div>
+                            <div>
+                                <span class="modeloEtiqueta">EXPLORE O SEU ESTILO</span>
+                                <h3>Modelo x</h3>
+                                <p>R$xxx,xx</p>
+                                <div>
+                                    <a class="modeloAgendar" href="#agendarHorario"> <i
+                                            class="bi bi-calendar2-check-fill"></i> Agendar</a>
+                                    <a class="modeloSobre" href=""><i class="bi bi-exclamation-circle"></i> Sobre o
+                                        modelo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="comoFunciona">
+            <div class="comoFunciona">
+                <div class="cfPai">
+                    <div class="cfFilho1">
+                        <h6>PASSO A PASSO</h6>
+                        <h5>Como funciona o procedimento?</h5>
+                    </div>
+                    <div class="cfFilho2">
+                        <p>Do primeiro contato à finalização das suas tranças, cada detalhe é pensado para valorizar sua
+                            beleza e respeitar sua essência. Aqui, você recebe todo o cuidado e a atenção necessários
+                            para viver uma experiência única e sair ainda mais confiante com seu novo visual.</p>
+                    </div>
+                    <div class="cfFilho3">
+                        <p>Dica importante: Atendimentos realizados somente com horário agendado e confirmado. Sempre
+                            acompanhe a verificação do seu horário pelo WhatsApp.</p>
+                    </div>
+                </div>
+                <div class="cardMaeCF">
+                    <div class="cardMae1e6">
+                        <h2>1</h2>
+                        <div class="cardfilho1e6">
+                            <div class="alinhamentoIconeCF">
+                                <i class="bi bi-search"></i>
+                                <h4>Escolha do Modelo</h4>
+                            </div>
+                            <p>Explore o catálogo de tranças e encontre o estilo que combina com você. Tire dúvidas
+                                antes de agendar.</p>
+                        </div>
+                    </div>
+                    <div class="cardMae2e5">
+                        <h2>2</h2>
+                        <div class="cardfilho2e5">
+                            <div class="alinhamentoIconeCF">
+                                <i class="bi bi-calendar4"></i>
+                                <h4>Agendamento</h4>
+                            </div>
+                            <p>Atendimentos somente com horário marcado. Agende com antecedência — especialmente em alta
+                                temporada.</p>
+                        </div>
+                    </div>
+                    <div class="cardMae3">
+                        <h2>3</h2>
+                        <div class="cardfilho3">
+                            <div class="alinhamentoIconeCF">
+                                <i class="bi bi-check2-circle"></i>
+                                <h4>Confirmação com Sinal</h4>
+                            </div>
+                            <p>O horário só é confirmado após o pagamento do sinal. O sinal serve como garantia da sua
+                                vaga e não é reembolsado.</p>
+                        </div>
+                    </div>
+                    <div class="cardMae4">
+                        <h2>4</h2>
+                        <div class="cardfilho4">
+                            <div class="alinhamentoIconeCF">
+                                <i class="bi bi-box-seam"></i>
+                                <h4>Preparação</h4>
+                            </div>
+                            <p>Chegue no horário. Se o procedimento for mão de obra, traga seus materiais completos
+                                (jumbos, fibras, pomada, finalizadores).</p>
+                        </div>
+                    </div>
+                    <div class="cardMae2e5">
+                        <h2>5</h2>
+                        <div class="cardfilho2e5">
+                            <div class="alinhamentoIconeCF">
+                                <i class="bi bi-clock"></i>
+                                <h4>Pontualidade</h4>
+                            </div>
+                            <p>Até 20 min de tolerância; depois, multa de 10% do valor total. Após 35 min, o horário é
+                                cancelado. Avise imprevistos com antecedência.</p>
+                        </div>
+                    </div>
+                    <div class="cardMae1e6">
+                        <h2>6</h2>
+                        <div class="cardfilho1e6">
+                            <div class="alinhamentoIconeCF">
+                                <i class="bi bi-scissors"></i>
+                                <h4>Atendimento</h4>
+                            </div>
+                            <p>Venha pronta(o) para o atendimento e avise antes sobre procedimentos adicionais. Somente
+                                crianças até 13 anos podem vir com responsável.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cardInformativoCF">
+                    <div class="localizacaoCF">
+                        <div class="localizacaoAlinhamento">
+                            <h5>LOCALIZAÇÃO</h5>
+                            <p>Confira a localização do meu estúdio. </p>
+                            <p>Nosso espaço está pronto para te atender!</p>
+                        </div>
+                        <div>
+                            <a href="">Ver localização</a>
+                        </div>
+                        <div>
+                            <img src="img/Captura de tela 2026-11-07 130754.png"
+                                alt="Imagem do mapa - Localização do Stúdio">
+                        </div>
+                    </div>
+                    <div class="contatoCF">
+                        <div>
+                            <img src="img/YaraInsta.png" alt="Foto de perfil no Instagram - Yara Braids">
+                        </div>
+                        <div class="contatoAlinhamentoIcone">
+                            <p>Ficou alguma dúvida sobre o meu processo de funcionamento? Entre em contato e tire suas
+                                dúvidas!</p>
+                        </div>
+                        <div>
+                            <div>
+                                <a
+                                    href="https://api.whatsapp.com/message/L7FXZNDNCJTNA1?autoload=1&app_absent=0&utm_source=ig"><i
+                                        class="bi bi-whatsapp"></i></a>
+                                <a href="https://www.instagram.com/yarabraids_/"><i class="bi bi-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="agendarHorario">
+            <div class="agendarHorario">
+                <div class="aHPai">
+                    <h6>AGENDAMENTO</h6>
+                    <h5>Garanta a sua vaga na minha agenda!</h5>
+                </div>
+                <div class="cardAH">
+                    <div class="comofuncionaCard">
+                        <h6>COMO FUNCIONA?</h6>
+                        <h5>Solicite;</h5>
+                        <h5 class="especialh5">Aguarde;</h5>
+                        <h5>Confirme.</h5>
+
+                        <div class="tracoAH"></div>
+                        <div class="alinhamentoPaiaH">
+                            <div class="alinhamentoIconeaH">
+                                <div>
+                                    <h2>1</h2>
+                                </div>
+                                <div>
+                                    <h4>Informe suas preferências</h4>
+                                    <p>Modelo, data e hora desejados — isso ajuda Yara a organizar a agenda.</p>
+                                </div>
+                            </div>
+
+                            <div class="alinhamentoIconeaH">
+                                <div>
+                                    <h2>2</h2>
+                                </div>
+                                <div>
+                                    <h4>Yara confirma disponibilidade</h4>
+                                    <p>O envio do formulário não reserva o horário. Aguarde o retorno.</p>
+                                </div>
+                            </div>
+
+                            <div class="alinhamentoIconeaH">
+                                <div>
+                                    <h2>3</h2>
+                                </div>
+                                <div>
+                                    <h4>Pague o sinal - vaga garantida</h4>
+                                    <p>Somente após o sinal o horário é confirmado. O sinal não é reembolsável.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="botaoaH">Solicitação ≠ Reserva</p>
+                    </div>
+
+                    <div class="preenchaCard">
+                        <div>
+                            <h3>Preencha seus dados</h3>
+                            <p>Envie sua solicitação e aguarde retorno para confirmar disponibilidade e detalhes do
+                                atendimento.</p>
+                        </div>
+                        <form id="formAgendamento">
+                            <div class="alinhamentoaHForm">
+                                <div>
+                                    <label for="nome">Nome</label>
+                                    <input type="text" id="nome" placeholder="Seu nome completo" required>
+                                </div>
+                                <div>
+                                    <label for="modelo">Modelo</label>
+                                    <select id="modelo" required>
+                                        <option value="" disabled selected>Selecione o modelo desejado</option>
+                                        <option value="modelo-1">Modelo 1</option>
+                                        <option value="modelo-2">Modelo 2</option>
+                                        <option value="modelo-3">Modelo 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="alinhamentoaHForm" id="linhaDetalhes" hidden>
+                                <div>
+                                    <label for="tamanho">Tamanho</label>
+                                    <select id="tamanho"></select>
+                                </div>
+                                <div>
+                                    <label for="espessura">Espessura</label>
+                                    <select id="espessura"></select>
+                                </div>
+                            </div>
+
+                            <div class="alinhamentoaHForm">
+                                <div>
+                                    <label for="data">Data</label>
+                                    <input type="date" id="data" placeholder="DD/MM/AAAA" required>
+                                </div>
+                                <div>
+                                    <label for="hora">Hora</label>
+                                    <input type="time" id="hora" placeholder="HH:MM" required>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="observacoes">Observações</label>
+                                <textarea name="observacoes" id="observacoes"
+                                    placeholder="Informe detalhes adicionais, preferências ou procedimentos que precisem ser considerados."></textarea>
+                            </div>
+                            <div class="botaoPreechaaH">
+                                <button type="submit"> <i class="bi bi-send"></i> Solicitar agendamento</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="sobre">
+            <div class="sobreMimPai">
+                <div class="sobreMim">
+                    <h6>SOBRE MIM</h6>
+                    <h5>Prazer, sou <span class="destaque">eu</span> quem faço acontecer!</h5>
+                </div>
+                <div class="sobreMimdisposicao">
+                    <div>
+                        <img src="img/YaraPessoal.png" alt="Foto Pessoal - Yara Abreu">
+                    </div>
+                    <div class="tamanhoPSM">
+                        <p>Sou Yara! Em 2022, iniciei minha trajetória como trancista profissional e empreendedora em
+                            Patos de Minas – MG. Sou especialista em tranças Freestyle e Fio de Cristal, com
+                            certificação internacional.</p>
+                        <p>Acredito que a beleza também é uma forma de expressão. Por isso, estou sempre em busca de
+                            novos conhecimentos e técnicas para oferecer um trabalho de qualidade, com dedicação,
+                            cuidado e respeito à individualidade de cada cliente.</p>
+                        <p>Minha trajetória também é marcada pela participação em importantes encontros e eventos do
+                            universo das tranças, como o Encontro de Trancistas em Belo Horizonte, o 5º Encontro dos
+                            Trancistas – Rio 2025 e o 6º Encontro dos Trancistas – Rio 2026.</p>
+
+                        <div class="infoSM">
+                            <div class="infoSMfilho">
+                                <h4>+3</h4>
+                                <p>anos entregando resultado</p>
+                            </div>
+                            <div class="infoSMfilho">
+                                <h4>+2</h4>
+                                <p>participação em Workshops</p>
+                            </div>
+                            <div class="infoSMfilho">
+                                <h4>1</h4>
+                                <p>Certificado Internacional</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer>
+        <div class="rodape">
+            <div class="rodapeFilho">
+                <div>
+                    <img src="img/logo.png" alt="Logo YaraBraids">
+                </div>
+                <div class="rodapefilhoMeio">
+                    <p>Se interessou pelo meu trabalho?</p>
+                    <p>Não perca tempo e agende já o seu horário!</p>
+                    <a href="#agendarHorario">Solicite o seu horário</a>
+                </div>
+                <div class="rodapefilhoFim">
+                    <p>Me siga nas redes sociais</p>
+                    <p>Acompanhe a minha rotina de trabalho</p>
+                    <div class="alinhamentoIconeFooter">
+                        <a href="https://www.tiktok.com/@yarabraids_?_r=1&_t=ZS-9BDRvhCpdnI"><i
+                                class="bi bi-tiktok"></i></a>
+                        <a href="https://www.instagram.com/yarabraids_/"><i class="bi bi-instagram"></i></a>
+                        <a href="https://api.whatsapp.com/message/L7FXZNDNCJTNA1?autoload=1&app_absent=0&utm_source=ig"><i
+                                class="bi bi-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex;flex-direction: column; justify-content: center;align-items: center;">
+                <p>© Yara Braids - Todos os direitos reservados.</p>
+                <a href="https://moralesthalys-portfolio.netlify.app/">Desenvolvido por Thalys Morales</a>
+            </div>
+        </div>
+    </footer>
+    <dialog class="modal" id="dialogModelo" aria-labelledby="sobreTitulo">
+    <div class="modalConteudo">
+        <button type="button" class="modalFechar" data-fechar aria-label="Fechar"><i class="bi bi-x-lg"></i></button>
+        <img id="sobreFoto" alt="">
+        <div class="modalTexto">
+            <h3 id="sobreTitulo"></h3>
+            <p id="sobrePreco"></p>
+            <div id="sobreConteudo"></div>
+            <div class="modalBotoes">
+                <button type="button" class="botaoPrincipal" id="sobreAgendar"><i class="bi bi-calendar2-check-fill"></i> Agendar este modelo</button>
+            </div>
+        </div>
+    </div>
+</dialog>
+    <script src="interactive.js"></script>
+</body>
+
+</html>
