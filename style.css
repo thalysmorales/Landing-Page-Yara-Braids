@@ -109,7 +109,6 @@ main::before {
     justify-content:center;
     align-items: flex-start;
     gap: 3rem;
-    padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 }
 
@@ -316,6 +315,7 @@ main::before {
     border-radius: 2rem;
     width: auto;
     height: auto;
+    margin-top: 1rem;
 }
 
 .botaoTodosModelos {
@@ -352,11 +352,12 @@ main::before {
 }
 
 .modelocardFilho img {
-    width: 16.25rem;
-    height: 11.25rem;
+    width: 15rem;
+    height: 18rem;
     object-fit: cover;
     border-radius: 2rem;
     margin: 0;
+    padding: 1rem;
 }
 
 .modelocardFilho h4 {
@@ -401,6 +402,7 @@ main::before {
     text-decoration: none;
     height: 2.875rem;
     border-radius: 1rem;
+    margin-top: 9rem;
     display: inline-flex;
     align-items: center;
     box-sizing: border-box;
@@ -1035,7 +1037,11 @@ main::before {
 }
 
 .sobreMimdisposicao img {
-    height: 23rem;
+    border-radius: 2rem;
+    border: 2px solid #142B3B;
+    height: 25rem;
+    width: 15rem;
+    object-fit: cover;
 }
 
 .tamanhoPSM {
@@ -1501,6 +1507,7 @@ main::before {
         align-self: flex-start !important;
         padding-left: 0.5rem;
         padding-top: 1rem;
+        gap: 1rem;
 
     }
 
@@ -1509,6 +1516,7 @@ main::before {
         border-radius: 1rem;
         width: auto;
         height: auto;
+        margin-top: 0.5rem;
     }
 
     .filtroLista{
@@ -1535,6 +1543,7 @@ main::before {
     .modelocardFilho img {
         width: 9rem;
         height: 13rem;
+        padding: 0;
     }
 
     .modelocardFilho h4 {
@@ -1579,6 +1588,7 @@ main::before {
         box-sizing: border-box;
         padding: 0.5rem;
         font-size: 0.9rem;
+        margin-top: 0;
 
     }
 
@@ -1659,7 +1669,9 @@ main::before {
     }
 
     .cfFilho3 {
-        width: 18rem;
+        display: flex;
+        justify-content: center;
+      
         background-color: #24465C;
         color: #E8F1F4;
         text-align: justify;
@@ -2193,7 +2205,7 @@ main::before {
     }
 
     .sobreMimdisposicao img {
-        height: 23rem;
+        height: 27rem;
     }
 
     .tamanhoPSM {
