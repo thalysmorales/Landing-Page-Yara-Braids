@@ -43,441 +43,375 @@ while (grupos[0].scrollWidth < larguraMinima) {
 }
 
 grupos[1].innerHTML = grupos[0].innerHTML;
-
-
 /* ===== FILTRO DE MODELOS ===== */
 const cards = document.querySelectorAll('.modelocardFilho');
+const filtro = document.querySelector('.modeloFiltro');
 const botaoTodos = document.getElementById('botaoTodos');
 const botaoFiltrar = document.getElementById('botaoFiltrar');
 const listaFiltros = document.getElementById('listaFiltros');
 const botoesFiltro = listaFiltros.querySelectorAll('button');
-const selecionados = new Set();   // guarda os ids dos modelos marcados
 
-function atualizarFiltro() {
-    const semFiltro = selecionados.size === 0;
-    botaoTodos.classList.toggle('ativo', semFiltro);
+listaFiltros.hidden = false;   // quem abre e fecha a lista agora é a classe "aberto" (CSS)
+
+// mostra só o modelo escolhido; 'todos' mostra tudo
+function mostrarModelo(chave) {
+    botaoTodos.classList.toggle('ativo', chave === 'todos');
 
     botoesFiltro.forEach(botao => {
-        const ativo = selecionados.has(botao.dataset.alvo);
+        const ativo = botao.dataset.filtro === chave;
         botao.classList.toggle('ativo', ativo);
         botao.setAttribute('aria-pressed', ativo);
     });
 
     cards.forEach(card => {
-        // sem filtro: mostra todos. Com filtro: só os marcados
-        card.hidden = !semFiltro && !selecionados.has(card.id);
+        const mostrar = chave === 'todos' || card.dataset.categoria === chave;
+        card.style.display = mostrar ? '' : 'none';
     });
 }
 
-botaoFiltrar.addEventListener('click', () => {
-    const abrir = listaFiltros.hidden;
-    listaFiltros.hidden = !abrir;
-    botaoFiltrar.setAttribute('aria-expanded', abrir);
-});
-
-botaoTodos.addEventListener('click', () => {
-    selecionados.clear();
-    atualizarFiltro();
-});
+botaoTodos.addEventListener('click', () => mostrarModelo('todos'));
 
 botoesFiltro.forEach(botao => {
     botao.addEventListener('click', () => {
-        const alvo = botao.dataset.alvo;
-        if (selecionados.has(alvo)) selecionados.delete(alvo);
-        else selecionados.add(alvo);
-        atualizarFiltro();
+        // clicar de novo no modelo marcado volta a mostrar todos
+        const jaMarcado = botao.classList.contains('ativo');
+        mostrarModelo(jaMarcado ? 'todos' : botao.dataset.filtro);
     });
 });
 
-
-
-botoesFiltro.forEach(botao => {
-    botao.addEventListener("click", function () {
-        const filtro = botao.dataset.filtro;
-
-        // marca o botão selecionado
-        botoesFiltro.forEach(b => {
-            b.classList.toggle("ativo", b === botao);
-            b.setAttribute("aria-pressed", b === botao);
-        });
-
-        // mostra ou esconde cada card
-        let visiveis = 0;
-        cardsModelo.forEach(card => {
-            const mostrar = filtro === "todas" || card.dataset.categoria === filtro;
-            card.hidden = !mostrar;
-            if (mostrar) visiveis++;
-        });
-
-        avisoVazio.hidden = visiveis > 0;
-    });
+botaoFiltrar.addEventListener('click', () => {
+    const aberto = filtro.classList.toggle('aberto');
+    botaoFiltrar.setAttribute('aria-expanded', aberto);
 });
 
-/*Quero Agendar*/
+/* =====================================================================
+   MODELOS, VALORES E ADICIONAIS
+   - A chave (boxBraids, ghanaBraids...) é a mesma do data-categoria do card.
+   - rotulo: nome do campo no formulário. plural: título da lista na janela "Sobre".
+   - opcoes: cada linha é uma opção com o valor. Para colocar foto, acrescente
+     foto: 'img/arquivo.jpg' (e, se quiser, detalhe: 'texto curto') na linha.
+   - adicionais: valor somado ao total. porUnidade: true = a cliente escolhe a quantidade.
+   ===================================================================== */
+const NUMERO_WHATSAPP = '5534992055886';   // 55 + DDD + número, só dígitos (número de teste)
 
-// Edite aqui: estilo -> tamanho -> espessuras
-const CATALOGO = {
-    "Boxeadora": {
-        "Com Cachos": { "A definir com a profissional": 200 },
-        "Sem Cachos": { "A definir com a profissional": 130 }
+const MODELOS = {
+    boxBraids: {
+        nome: 'Box Braids',
+        subtitulo: 'Com cachos (Goddess Braids)',
+        rotulo: 'Espessura',
+        plural: 'Espessuras',
+        opcoes: [
+            { nome: 'Espessura P', valor: 470 },   // foto: 'img/box-espessura-p.jpg',
+            { nome: 'Espessura M', valor: 450 },
+            { nome: 'Espessura G', valor: 430 },
+        ],
     },
-    "Box Braids": {
-        "Chanel": { "Espessura P": 400, "Espessura M": 380, "Espessura G": 360 },
-        "Médio": { "Espessura P": 430, "Espessura M": 380, "Espessura G": 360 },
-        "Cintura": { "Espessura P": 500, "Espessura M": 450, "Espessura G": 400 }
+    frenchCurls: {
+        nome: 'French Curls',
+        subtitulo: 'Boho Curls',
+        rotulo: 'Espessura',
+        plural: 'Espessuras',
+        opcoes: [
+            { nome: 'Espessura P', valor: 460 },
+            { nome: 'Espessura M', valor: 440 },
+            { nome: 'Espessura G', valor: 420 },
+        ],
     },
-    "Goddess Braids": {
-        "Chanel": { "Espessura P": 460, "Espessura M": 440, "Espessura G": 400 },
-        "Médio": { "Espessura P": 480, "Espessura M": 450, "Espessura G": 400 },
-        "Cintura": { "Espessura P": 550, "Espessura M": 500, "Espessura G": 450 }
+    fulaniLimonade: {
+        nome: 'Fulani Limonade Braids',
+        subtitulo: 'Tradicional (sem cachos)',
+        rotulo: 'Espessura',
+        plural: 'Espessuras',
+        opcoes: [
+            { nome: 'Espessura P', valor: 395 },
+            { nome: 'Espessura M', valor: 375 },
+        ],
     },
-    "Ghana Braids": {
-        "Com Cachos": ["A definir com a profissional"],
-        "Sem Cachos": ["A definir com a profissional"]
+    ghanaBraids: {
+        nome: 'Ghana Braids',
+        rotulo: 'Quantidade de tranças',
+        plural: 'Quantidade de tranças',
+        opcoes: [
+            { nome: '4 tranças', valor: 150 },
+            { nome: '6 tranças', valor: 170 },
+            { nome: '8 tranças', valor: 190 },
+            { nome: '10 tranças', valor: 210 },
+        ],
+        adicionais: [
+            { nome: 'Com cachos', valor: 35 },
+            { nome: 'Adição de tranças', valor: 10, porUnidade: true },
+        ],
     },
-    "Gypsy Braids": {
-        "Cintura": { "Espessura P": 560, "Espessura M": 500, "Espessura G": 460 }
+    knotlessBraids: {
+        nome: 'Knotless Braids',
+        subtitulo: 'Com cachos (Gipsy)',
+        rotulo: 'Espessura',
+        plural: 'Espessuras',
+        opcoes: [
+            { nome: 'Espessura P', valor: 490 },
+            { nome: 'Espessura M', valor: 470 },
+            { nome: 'Espessura G', valor: 450 },
+            { nome: 'Espessura GG', valor: 420 },
+        ],
     },
-    "Nagô": {
-        "Nagô Masculina": ["Cabelo Natural", "Com Alongamento"],
-        "Nagô Tiara": ["A definir com a profissional"],
-        "Nagô Topo": ["A definir com a profissional"]
-    }
-
+    nagoMas: {
+        nome: 'Nagô Masculina',
+        rotulo: 'Estilo',
+        plural: 'Estilos',
+        opcoes: [
+            { nome: 'Nagô Simples', valor: 130 },
+            { nome: 'Nagô Freestyle Simples', valor: 145 },
+            { nome: 'Nagô Freestyle', valor: 180 },
+            { nome: 'Nagô Freestyle Avançado', valor: 210 },
+            { nome: 'Flat Twist', valor: 175 },
+        ],
+        adicionais: [
+            { nome: 'Adição de jumbo', valor: 15 },
+        ],
+    },
 };
 
-const VALOR_SEM_VARIACAO = {
-    "Ghana Braids|Sem Cachos": "a partir de R$190,00",
-    "Ghana Braids|Com Cachos": "a partir de R$250,00",
-    "Nagô|Nagô Masculina|Cabelo Natural": "a partir de R$120,00",
-    "Nagô|Nagô Masculina|Com Alongamento": "a partir de R$150,00",
-    "Nagô|Nagô Tiara": "a partir de R$90,00",
-    "Nagô|Nagô Topo": "a partir de R$40,00"
-};
+/* ===== FUNÇÕES DE VALOR ===== */
+const reais = (v) => 'R$' + v.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
 
-const selServico = document.getElementById("servico");
-const selTamanho = document.getElementById("tamanho");
-const selEspessura = document.getElementById("espessura");
-const boxTamanho = document.getElementById("campoTamanho");
-const boxEspessura = document.getElementById("campoEspessura");
-
-// preenche um select com opções, ou esconde o campo se não houver
-function preencher(select, caixa, opcoes, rotulo) {
-    if (!opcoes || opcoes.length === 0) {
-        caixa.hidden = true;
-        select.required = false;
-        select.innerHTML = "";
-        return;
-    }
-    select.innerHTML =
-        `<option value="">Selecione ${rotulo}</option>` +
-        opcoes.map(o => `<option>${o}</option>`).join("");
-    select.required = true;
-    caixa.hidden = false;
+function faixaDePreco(m) {
+    const valores = m.opcoes.map(o => o.valor);
+    const menor = Math.min(...valores);
+    const maior = Math.max(...valores);
+    let texto = menor === maior ? reais(menor) : `${reais(menor)} a ${reais(maior)}`;
+    if (m.adicionais && m.adicionais.length) texto += ' +adicionais';
+    return texto;
 }
 
-selServico.addEventListener("change", function () {
-    const tamanhos = CATALOGO[selServico.value];
-    preencher(selTamanho, boxTamanho, tamanhos && Object.keys(tamanhos), "o tamanho");
-    preencher(selEspessura, boxEspessura, null);
+function calcularValor(m, nomeOpcao, adicionais) {
+    const opcao = m.opcoes.find(o => o.nome === nomeOpcao);
+    if (!opcao) return null;
+    return opcao.valor + adicionais.reduce((soma, a) => soma + a.valor * a.qtd, 0);
+}
 
-    if (tamanhos && Object.keys(tamanhos).length === 1) {
-        selTamanho.value = Object.keys(tamanhos)[0];
-        selTamanho.dispatchEvent(new Event("change"));
-    }
+// o preço de cada card vem da lista acima (o texto do HTML serve de reserva)
+cards.forEach(card => {
+    const m = MODELOS[card.dataset.categoria];
+    const preco = card.querySelector('p');
+    if (m && preco) preco.textContent = faixaDePreco(m);
 });
 
-selTamanho.addEventListener("change", function () {
-    const espessuras = CATALOGO[selServico.value]?.[selTamanho.value];
-    const opcoes = Array.isArray(espessuras) ? espessuras : espessuras && Object.keys(espessuras);
-    preencher(selEspessura, boxEspessura, opcoes, "a espessura");
-});
+/* ===== FORMULÁRIO ===== */
+const formulario = document.getElementById('formAgendamento');
+const campoNome = document.getElementById('nome');
+const selServico = document.getElementById('servico');
+const linhaDetalhes = document.getElementById('linhaDetalhes');
+const rotuloOpcao = document.getElementById('rotuloOpcao');
+const selOpcao = document.getElementById('opcao');
+const campoAdicionais = document.getElementById('campoAdicionais');
+const listaAdicionais = document.getElementById('listaAdicionais');
+const campoData = document.getElementById('data');
+const campoHora = document.getElementById('hora');
+const campoObs = document.getElementById('observacoes');
 
-function formatarReais(valor) {
-    return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-}
+// as opções do select vêm da lista de modelos
+selServico.length = 1;   // mantém só "Selecione o serviço"
+Object.entries(MODELOS).forEach(([chave, m]) => selServico.add(new Option(m.nome, chave)));
 
-function precoNumerico() {
-    const preco = CATALOGO[selServico.value]?.[selTamanho.value]?.[selEspessura.value];
-    return typeof preco === "number" ? preco : null;
-}
-
-function calcularValor() {
-    const preco = precoNumerico();
-    if (preco !== null) return formatarReais(preco);
-
-    const chave2 = [selServico.value, selTamanho.value].join("|");
-    const chave3 = chave2 + "|" + selEspessura.value;
-    return VALOR_SEM_VARIACAO[chave3] || VALOR_SEM_VARIACAO[chave2] || null;
-}
-
-
-/*Mensagem para o WhatsApp + validação*/
-
-
-const NUMERO = "5534991743504"; // 55 + DDD + número, só dígitos
-
-const formulario = document.getElementById("formAgendamento");
-const campoNome = document.getElementById("nome");
-const campoData = document.getElementById("data");
-const campoHora = document.getElementById("horario");
-const modalEnvio = document.getElementById("modalEnvio");
-
-// data mínima = hoje, no horário local
+// não deixa escolher data que já passou
 const hoje = new Date();
-campoData.min = `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, "0")}-${String(hoje.getDate()).padStart(2, "0")}`;
+campoData.min = `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, '0')}-${String(hoje.getDate()).padStart(2, '0')}`;
 
-function abrirConfirmacao(dados, url) {
-    const resumo = document.getElementById("envioResumo");
-    resumo.innerHTML = "";
+// mostra o segundo campo (e os adicionais) só quando o modelo tem opções
+function atualizarDetalhes() {
+    const m = MODELOS[selServico.value];
+    linhaDetalhes.hidden = !m;
+    campoAdicionais.hidden = !(m && m.adicionais && m.adicionais.length);
+    selOpcao.length = 0;
+    listaAdicionais.innerHTML = '';
+    if (!m) return;
 
-    [["Nome", dados.nome], ["Serviço", dados.servico], ["Valor", dados.valor], ["Valor do Sinal", dados.vSinal], ["Data", dados.data], ["Horário", dados.horario]]
-        .forEach(([rotulo, valor]) => {
-            const li = document.createElement("li");
-            const negrito = document.createElement("strong");
-            negrito.textContent = rotulo + ": ";
-            li.append(negrito, valor);
-            resumo.append(li);
-        });
+    rotuloOpcao.textContent = m.rotulo;
+    selOpcao.add(new Option('Selecione uma opção', ''));
+    m.opcoes.forEach(o => selOpcao.add(new Option(`${o.nome} — ${reais(o.valor)}`, o.nome)));
 
-    document.getElementById("envioLink").href = url;
-    modalEnvio.showModal();
+    (m.adicionais || []).forEach((a, i) => {
+        const texto = `${a.nome} (+ ${reais(a.valor)}${a.porUnidade ? ' cada' : ''})`;
+        const linha = document.createElement('label');
+        linha.className = 'adicionalLinha';
+        linha.innerHTML = a.porUnidade
+            ? `<input type="number" min="0" max="20" value="0" data-indice="${i}"><span>${texto}</span>`
+            : `<input type="checkbox" data-indice="${i}"><span>${texto}</span>`;
+        listaAdicionais.append(linha);
+    });
 }
 
-document.getElementById("envioFechar").addEventListener("click", () => modalEnvio.close());
-modalEnvio.addEventListener("click", e => { if (e.target === modalEnvio) modalEnvio.close(); });
+selServico.addEventListener('change', atualizarDetalhes);
+
+// adicionais escolhidos, com a quantidade
+function lerAdicionais(m) {
+    return [...listaAdicionais.querySelectorAll('input')]
+        .map(input => {
+            const a = m.adicionais[Number(input.dataset.indice)];
+            const qtd = input.type === 'checkbox'
+                ? (input.checked ? 1 : 0)
+                : Math.max(0, parseInt(input.value, 10) || 0);
+            return { ...a, qtd };
+        })
+        .filter(a => a.qtd > 0);
+}
+
+function irParaFormulario(chave) {
+    selServico.value = chave;
+    atualizarDetalhes();
+    document.getElementById('preenchaCard').scrollIntoView({ behavior: 'smooth' });
+    campoNome.focus({ preventScroll: true });
+}
+
+/* ===== "AGENDAR" E "SOBRE O MODELO" DOS CARDS ===== */
+const dialogModelo = document.getElementById('dialogModelo');
+const sobreFoto = document.getElementById('sobreFoto');
+const sobrePreco = document.getElementById('sobrePreco');
+const sobreTitulo = document.getElementById('sobreTitulo');
+const sobreSubtitulo = document.getElementById('sobreSubtitulo');
+const sobreConteudo = document.getElementById('sobreConteudo');
+const sobreAgendar = document.getElementById('sobreAgendar');
+let modeloAberto = null;
+
+function abrirSobre(chave) {
+    const m = MODELOS[chave];
+    const card = document.querySelector(`.modelocardFilho[data-categoria="${chave}"]`);
+    modeloAberto = chave;
+
+    sobreFoto.src = card.querySelector('img').src;
+    sobreFoto.alt = m.nome;
+    sobrePreco.textContent = faixaDePreco(m);
+    sobreTitulo.textContent = m.nome;
+    sobreSubtitulo.textContent = m.subtitulo || '';
+    sobreSubtitulo.hidden = !m.subtitulo;
+
+    let html = `<h4>${m.plural}</h4><ul class="modalOpcoes">` + m.opcoes.map(o => `
+        <li>
+            ${o.foto ? `<img src="${o.foto}" alt="${m.nome} - ${o.nome}">` : ''}
+            <strong>${o.nome}</strong>
+            <span class="valorOpcao">${reais(o.valor)}</span>
+            ${o.detalhe ? `<small>${o.detalhe}</small>` : ''}
+        </li>`).join('') + '</ul>';
+
+    if (m.adicionais && m.adicionais.length) {
+        html += '<h4>Adicionais</h4><ul class="modalAdicionais">' + m.adicionais.map(a =>
+            `<li>${a.nome}<b>+ ${reais(a.valor)}${a.porUnidade ? ' cada' : ''}</b></li>`).join('') + '</ul>';
+    }
+    if (m.observacao) html += `<p class="modalObs">${m.observacao}</p>`;
+
+    sobreConteudo.innerHTML = html;
+    dialogModelo.showModal();
+}
+
+document.querySelector('.modeloCardmae').addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link) return;
+    e.preventDefault();
+    const chave = link.closest('.modelocardFilho').dataset.categoria;
+    if (link.classList.contains('modeloSobre')) abrirSobre(chave);
+    else irParaFormulario(chave);
+});
+
+sobreAgendar.addEventListener('click', () => {
+    dialogModelo.close();
+    irParaFormulario(modeloAberto);
+});
+
+/* ===== CONFIRMAÇÃO + WHATSAPP ===== */
+const dialogConfirmacao = document.getElementById('dialogConfirmacao');
+const confLista = document.getElementById('confLista');
+const confEditar = document.getElementById('confEditar');
+const confEnviar = document.getElementById('confEnviar');
+
+function formatarData(valor) {
+    const [ano, mes, dia] = valor.split('-').map(Number);
+    const diaSemana = new Date(ano, mes - 1, dia).toLocaleDateString('pt-BR', { weekday: 'long' });
+    return `${String(dia).padStart(2, '0')}/${String(mes).padStart(2, '0')}/${ano} (${diaSemana})`;
+}
+
+function montarMensagem(d) {
+    const linhas = [
+        'Olá, Yara! Gostaria de solicitar um agendamento ✨',
+        '',
+        `👤 *Nome:* ${d.nome}`,
+        `💇‍♀️ *Modelo:* ${d.modelo}`,
+        `🧵 *${d.rotulo}:* ${d.opcao}`,
+    ];
+    if (d.adicionais) linhas.push(`➕ *Adicionais:* ${d.adicionais}`);
+    linhas.push(
+        `💰 *Valor:* ${d.valor}`,
+        `📅 *Data:* ${d.data}`,
+        `⏰ *Horário:* ${d.hora}`,
+        `📝 *Observações:* ${d.obs || 'nenhuma'}`
+    );
+    return linhas.join('\n');
+}
 
 function enviarSolicitacao() {
-    const nome = campoNome.value.trim();
-    const data = campoData.value;
-    const horario = campoHora.value;
+    const m = MODELOS[selServico.value];
 
+    // verificação só no clique do botão, com aviso dos campos que faltam
     const faltando = [];
-    if (!nome) faltando.push({ rotulo: "Nome completo", el: campoNome });
-    if (!data) faltando.push({ rotulo: "Data", el: campoData });
-    if (!horario) faltando.push({ rotulo: "Horário", el: campoHora });
-    if (!boxTamanho.hidden && !selTamanho.value) faltando.push({ rotulo: "Tamanho", el: selTamanho });
-    if (!boxEspessura.hidden && !selEspessura.value) faltando.push({ rotulo: "Espessura", el: selEspessura });
+    if (!campoNome.value.trim()) faltando.push({ rotulo: 'Nome completo', el: campoNome });
+    if (!m) faltando.push({ rotulo: 'Modelo desejado', el: selServico });
+    else if (!selOpcao.value) faltando.push({ rotulo: m.rotulo, el: selOpcao });
+    if (!campoData.value) faltando.push({ rotulo: 'Data', el: campoData });
+    if (!campoHora.value) faltando.push({ rotulo: 'Hora', el: campoHora });
 
     if (faltando.length) {
-        alert("Preencha os campos obrigatórios:\n\n• " + faltando.map(f => f.rotulo).join("\n• "));
+        alert('Preencha os campos obrigatórios:\n\n• ' + faltando.map(f => f.rotulo).join('\n• '));
         faltando[0].el.focus();
         return;
     }
-
-    if (data < campoData.min) {
-        alert("Escolha uma data a partir de hoje.");
+    if (campoData.value < campoData.min) {
+        alert('Escolha uma data a partir de hoje.');
         campoData.focus();
         return;
     }
 
-    const observacao = document.getElementById("observacao").value.trim();
+    const adicionais = lerAdicionais(m);
+    const total = calcularValor(m, selOpcao.value, adicionais);
 
-    const partes = [selServico.value, selTamanho.value, selEspessura.value].filter(Boolean);
-    const servico = partes.length
-        ? partes[0] + (partes.length > 1 ? " (" + partes.slice(1).join(", ") + ")" : "")
-        : "não informado";
+    const dados = {
+        nome: campoNome.value.trim(),
+        modelo: m.nome + (m.subtitulo ? ' – ' + m.subtitulo : ''),
+        rotulo: m.rotulo,
+        opcao: selOpcao.value,
+        adicionais: adicionais.map(a => a.porUnidade ? `${a.nome} (${a.qtd}x)` : a.nome).join(', '),
+        valor: total === null ? 'A combinar' : reais(total),
+        data: formatarData(campoData.value),
+        hora: campoHora.value,
+        obs: campoObs.value.trim(),
+    };
 
-    const preco = precoNumerico();
-    const valor = calcularValor() || "A combinar";
-    const vSinal = preco !== null ? formatarReais(preco * 0.3) : "A combinar com a Yasmin";
+    const resumo = [['Nome', dados.nome], ['Modelo', dados.modelo], [dados.rotulo, dados.opcao]];
+    if (dados.adicionais) resumo.push(['Adicionais', dados.adicionais]);
+    resumo.push(['Valor', dados.valor], ['Data', dados.data], ['Horário', dados.hora], ['Observações', dados.obs || '—']);
 
-    const dataBR = data.split("-").reverse().join("/");
+    confLista.innerHTML = '';
+    resumo.forEach(([rotulo, valor]) => {
+        const dt = document.createElement('dt');
+        const dd = document.createElement('dd');
+        dt.textContent = rotulo;
+        dd.textContent = valor;                      // textContent: o que a cliente digita nunca vira HTML
+        if (rotulo === 'Valor') dd.className = 'confValor';
+        confLista.append(dt, dd);
+    });
 
-    const mensagem =
-        "Olá! Gostaria de solicitar um agendamento.\n\n" +
-        "Nome: " + nome + "\n" +
-        "Serviço: " + servico + "\n" +
-        "Valor do serviço: " + valor + "\n" +
-        "Valor do sinal (30%): " + vSinal + "\n" +
-        "Data: " + dataBR + "\n" +
-        "Horário: " + horario + "\n" +
-        "Observações: " + (observacao || "nenhuma");
-
-    const url = "https://wa.me/" + NUMERO + "?text=" + encodeURIComponent(mensagem);
-    abrirConfirmacao({ nome, servico, valor, vSinal, data: dataBR, horario }, url);
+    confEnviar.href = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(montarMensagem(dados))}`;
+    dialogConfirmacao.showModal();
 }
 
-// a verificação só acontece no clique do botão
-document.getElementById("btnEnviar").addEventListener("click", enviarSolicitacao);
+document.getElementById('btnEnviar').addEventListener('click', enviarSolicitacao);
 
-// garantia: o Enter nunca envia o formulário
-formulario.addEventListener("submit", e => e.preventDefault());
-
-/*Saiba Mais*/
-
-const MODELOS = {
-    "boxeadora": {
-        servico: "Boxeadora",
-        titulo: "Boxeadora",
-        fotos: [{ src: "img/Boxeadora.jpeg", legenda: "Boxeadora com Cachos - R$200,00 / Boxeadora sem Cachos - R$130,00" }],
-    },
-    "boxTamChanel": {
-        servico: "Box Braids", tamanho: "Chanel",
-        titulo: "Box Braids · Tamanho Chanel",
-        descricao: "",
-        fotos: [
-            { src: "img/BoxEspP.jpeg", legenda: "P - R$400,00" },
-            { src: "img/BoxEspM.jpeg", legenda: "M - R$380,00" },
-            { src: "img/BoxEspG.jpeg", legenda: "G - R$360,00" }
-        ],
-        detalhes: [""]
-    },
-    "boxTamMedio": {
-        servico: "Box Braids", tamanho: "Médio",
-        titulo: "Box Braids · Tamanho Médio",
-        fotos: [
-            { src: "img/BoxEspP.jpeg", legenda: "P - R$430,00" },
-            { src: "img/BoxEspM.jpeg", legenda: "M - R$380,00" },
-            { src: "img/BoxEspG.jpeg", legenda: "G - R$360,00" }
-        ],
-    },
-    "boxTamCintura": {
-        servico: "Box Braids", tamanho: "Cintura",
-        titulo: "Box Braids · Tamanho Cintura",
-        fotos: [
-            { src: "img/BoxEspP.jpeg", legenda: "P - R$500,00" },
-            { src: "img/BoxEspM.jpeg", legenda: "M - R$450,00" },
-            { src: "img/BoxEspG.jpeg", legenda: "G - R$400,00" }
-        ],
-    },
-    "GhanaBraids": {
-        servico: "Ghana Braids",
-        titulo: "Ghana Braids",
-        fotos: [
-            { src: "img/GhanaBraids.jpeg", legenda: "A partir de R$190,00 / OBS:.Os valores vão de acordo com o modelo escolhido e a quantidade de tranças" }
-        ],
-    },
-    "GhanaBraidsCcachos": {
-        servico: "Ghana Braids",
-        titulo: "Ghana Braids com Cachos",
-        fotos: [{ src: "img/GhanaBraidsCcachos.jpeg", legenda: "A partir de R$250,00 / OBS:.Os valores vão de acordo com o modelo escolhido e a quantidade de tranças" }],
-    },
-    "GoddessTamChanel": {
-        servico: "Goddess Braids", tamanho: "Chanel",
-        titulo: "Goddess Braids · Tamanho Chanel",
-        fotos: [
-            { src: "img/GoddesEspP.jpeg", legenda: "P - R$460,00" },
-            { src: "img/GoddesEspM.jpeg", legenda: "M - R$440,00" },
-            { src: "img/GoddesEspG.jpeg", legenda: "G - R$400,00" }
-        ],
-    },
-    "GoddessTamMedia": {
-        servico: "Goddess Braids", tamanho: "Médio",
-        titulo: "Goddess Braids · Tamanho Médio",
-        descricao: "",
-        fotos: [
-            { src: "img/GoddesEspP.jpeg", legenda: "P - R$480,00" },
-            { src: "img/GoddesEspM.jpeg", legenda: "M - R$450,00" },
-            { src: "img/GoddesEspG.jpeg", legenda: "G - R$400,00" }
-        ],
-        detalhes: [""]
-    },
-    "GoddessTamCintura": {
-        servico: "Goddess Braids", tamanho: "Cintura",
-        titulo: "Goddess Braids · Tamanho Cintura",
-        descricao: "",
-        fotos: [
-            { src: "img/GoddesEspP.jpeg", legenda: "P - R$550,00" },
-            { src: "img/GoddesEspM.jpeg", legenda: "M - R$500,00" },
-            { src: "img/GoddesEspG.jpeg", legenda: "G - R$450,00" }
-        ],
-        detalhes: [""]
-    },
-    "GypsyEspessuraP": {
-        servico: "Gypsy Braids", tamanho: "Cintura",
-        titulo: "Gypsy Braids · Tamanho Cintura",
-        fotos: [
-            { src: "img/GypsyEspP.jpeg", legenda: "P - R$560,00" },
-        ],
-    },
-    "GypsyEspessuraM": {
-        servico: "Gypsy Braids", tamanho: "Cintura",
-        titulo: "Gypsy Braids · Tamanho Cintura",
-        fotos: [
-            { src: "img/GypsyEspM.jpeg", legenda: "M - R$500,00" },
-        ],
-    },
-    "GypsyEspessuraG": {
-        servico: "Gypsy Braids", tamanho: "Cintura",
-        titulo: "Gypsy Braids · Tamanho Cintura",
-        fotos: [
-            { src: "img/GypsyEspG.jpeg", legenda: "G - R$460,00" }
-        ]
-    },
-    "NagoMasculina": {
-        servico: "Nagô",
-        titulo: "Nagô Masculina",
-        fotos: [{ src: "img/NagoMasculina.jpeg", legenda: "Cabelo Natural -> A partir de R$120,00" },
-        { src: "img/NagoMasculina.jpeg", legenda: "Com Alongamento -> A partir de R$150,00 dependendo do modelo escolhido" }
-        ],
-    },
-    "NagoTira": {
-        servico: "Nagô",
-        titulo: "Nagô Tiara",
-        fotos: [{ src: "img/NagoTiara.jpeg", legenda: "A partir de R$90,00 / OBS:.Os valores vão de acordo com o modelo escolhido" }],
-    },
-    "NagoTopo": {
-        servico: "Nagô",
-        titulo: "Nagô Topo",
-        fotos: [
-            { src: "img/NagoTopo1.jpeg", legenda: "A partir de R$40,00 / OBS:.Os valores vão de acordo com o modelo escolhido" },
-            { src: "img/NagoTopo2.jpeg", legenda: "A partir de R$40,00 / OBS:.Os valores vão de acordo com o modelo escolhido" },
-        ],
-    }
-};
-
-const modal = document.getElementById("modalModelo");
-
-// abrir: qualquer botão com data-modelo
-document.addEventListener("click", function (e) {
-    const botao = e.target.closest("[data-modelo]");
-    if (!botao) return;
-
-    const m = MODELOS[botao.dataset.modelo];
-    if (!m) {
-        console.warn("Modelo sem cadastro em MODELOS:", botao.dataset.modelo);
-        return;
-    }
-
-    document.getElementById("modalTitulo").textContent = m.titulo;
-    document.getElementById("modalDescricao").textContent = m.descricao;
-
-    document.getElementById("modalFotos").innerHTML = m.fotos.map(f =>
-        `<figure>
-            <img src="${f.src}" alt="${m.titulo} - ${f.legenda}">
-            <figcaption>${f.legenda}</figcaption>
-        </figure>`
-    ).join("");
-
-    const lista = document.getElementById("modalDetalhes");
-    lista.innerHTML = (m.detalhes || []).map(d => `<li>${d}</li>`).join("");
-    lista.hidden = !(m.detalhes && m.detalhes.length);
-
-    const agendar = document.getElementById("modalAgendar");
-    agendar.dataset.servico = m.servico;
-    agendar.dataset.tamanho = m.tamanho || "";
-
-    modal.showModal();
-    modal.scrollTop = 0;
-});
-
-// fechar: botão X, clique fora do quadro ou tecla Esc (nativa)
-modal.querySelector(".modalFechar").addEventListener("click", () => modal.close());
-modal.addEventListener("click", function (e) {
-    if (e.target === modal) modal.close();
-});
-
-// "Agendar este modelo": já preenche o formulário
-document.getElementById("modalAgendar").addEventListener("click", function () {
-    selServico.value = this.dataset.servico;
-    selServico.dispatchEvent(new Event("change"));
-
-    if (this.dataset.tamanho) {
-        selTamanho.value = this.dataset.tamanho;
-        selTamanho.dispatchEvent(new Event("change"));
-    }
-    modal.close();
+// o Enter nunca envia: ele pula para o próximo campo
+formulario.addEventListener('submit', e => e.preventDefault());
+formulario.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'BUTTON') return;
+    e.preventDefault();
+    const campos = [...formulario.querySelectorAll('input, select, textarea')].filter(c => !c.closest('[hidden]'));
+    const proximo = campos[campos.indexOf(e.target) + 1];
+    if (proximo) proximo.focus();
 });
 
 confEditar.addEventListener('click', () => {
@@ -489,7 +423,7 @@ confEnviar.addEventListener('click', () => {
     setTimeout(() => dialogConfirmacao.close(), 300);
 });
 
-/* ===== FECHAR JANELAS: botão X ou clique no fundo escuro ===== */
+/* ===== FECHAR JANELAS: botão X, botão Fechar ou clique no fundo escuro ===== */
 document.querySelectorAll('dialog').forEach(janela => {
     janela.addEventListener('click', (e) => { if (e.target === janela) janela.close(); });
     janela.querySelectorAll('[data-fechar]').forEach(botao =>

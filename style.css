@@ -204,7 +204,7 @@ main::before {
 .faixaTrilha {
     display: flex;
     width: max-content;
-    animation: rolarFaixa 60s linear infinite;
+    animation: rolarFaixa 10s linear infinite;
 }
 
 .faixaGrupo {
@@ -286,7 +286,7 @@ main::before {
 
 .modeloMae1 img {
     width: 39.1875rem;
-    height: 22.8125rem;
+    height: 22.815rem;
     object-fit: cover;
 }
 
@@ -304,7 +304,7 @@ main::before {
 
 .modeloFiltro {
     align-self: flex-start !important;
-    padding-left: 10.5rem;
+    padding-left:6rem;
     padding-top: 1rem;
 
 }
@@ -318,19 +318,11 @@ main::before {
     margin-top: 1rem;
 }
 
-.botaoTodosModelos {
-    background-color: #142B3B !important;
-    color: #E8F1F4 !important;
-}
-
-.botaoFiltrarModelos {
-    background-color: transparent !important;
-    color: #E8F1F4 !important;
-}
-
 .modeloCardmae {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, auto);
+    grid-auto-flow: column;
     justify-content: center;
     align-items: center;
     padding-top: 1rem;
@@ -343,8 +335,7 @@ main::before {
     align-items: center;
     gap: 1.5rem;
     background-color: #F0F5F6;
-    width: 78.8125rem;
-    min-height: 13.25rem;
+    width: auto;
     border: 1px solid #142B3B;
     border-radius: 2rem;
     padding: 0 1rem;
@@ -352,12 +343,12 @@ main::before {
 }
 
 .modelocardFilho img {
-    width: 15rem;
-    height: 18rem;
+    width: 12rem;
+    height: 17rem;
     object-fit: cover;
     border-radius: 2rem;
     margin: 0;
-    padding: 1rem;
+    padding: 0.5rem;
 }
 
 .modelocardFilho h4 {
@@ -390,6 +381,7 @@ main::before {
     font-weight: bold;
     font-size: 1.25rem;
     margin: 0;
+    width: 15rem;
 }
 
 .modelocardFilho p {
@@ -402,7 +394,7 @@ main::before {
     text-decoration: none;
     height: 2.875rem;
     border-radius: 1rem;
-    margin-top: 9rem;
+    margin-top: 5rem;
     display: inline-flex;
     align-items: center;
     box-sizing: border-box;
@@ -1176,136 +1168,6 @@ main::before {
     justify-self: center;
 }
 
-/*MODAL*/
-
-.modal {
-    width: min(46rem, calc(100% - 2rem));
-    max-height: calc(100vh - 2rem);
-    padding: 0;
-    border: 2px solid #24465C;
-    border-radius: 2rem;
-    background-color: #E8F1F4;
-    color: #142B3B;
-}
-
-.modal::backdrop {
-    background: rgb(20 43 59 / 60%);
-}
-
-.modalConteudo {
-    position: relative;
-    display: flex;
-    gap: 1.5rem;
-    padding: 1.75rem 2rem;
-}
-
-.modalConteudo--coluna {
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.modal img {
-    width: 14rem;
-    height: 18rem;
-    object-fit: cover;
-    border-radius: 1.25rem;
-    flex-shrink: 0;
-}
-
-.modalTexto {
-    flex: 1;
-}
-
-.modal h3 {
-    margin: 0 0 0.5rem;
-    font-size: 1.5rem;
-}
-
-.modal h4 {
-    margin: 1rem 0 0.25rem;
-    font-size: 1rem;
-    color: #24465C;
-}
-
-.modal p {
-    margin: 0;
-    color: #24465C;
-}
-
-.modalLista {
-    margin: 0;
-    padding-left: 1.25rem;
-    color: #24465C;
-    font-size: 0.875rem;
-}
-
-.modalFechar {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    border: 0;
-    background: none;
-    color: #142B3B;
-    cursor: pointer;
-}
-
-.modalFechar i {
-    font-size: 1.25rem;
-}
-
-.confLista {
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    gap: 0.5rem 1.25rem;
-    margin: 1rem 0 0;
-}
-
-.confLista dt {
-    font-weight: bold;
-}
-
-.confLista dd {
-    margin: 0;
-    overflow-wrap: anywhere;
-}
-
-.modalBotoes {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-}
-
-.modalBotoes a,
-.modalBotoes button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 2rem;
-    font-weight: bold;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.botaoSecundario {
-    background: transparent;
-    color: #142B3B;
-    border: 1.5px solid #142B3B;
-}
-
-.botaoPrincipal {
-    background-color: #0A6272;
-    color: #E8F1F4;
-    border: 1.5px solid #0A6272;
-}
-
-.modal ul {
-    margin: 0;
-    padding-left: 1.25rem;
-    color: #24465C;
-    font-size: 0.875rem;
-}
 
 
 @media (max-width: 768px) {
@@ -1421,7 +1283,7 @@ main::before {
         flex-direction: column;
         justify-content: center !important;
         align-items: center !important;
-        gap: 4rem;
+        gap: 3rem;
     }
 
     .inicioPai img {
@@ -1431,8 +1293,13 @@ main::before {
 
     .inicioPai h6 {
         font-size: 1.125rem;
-        padding-bottom: 1rem;
-        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-top: 0;
+    }
+
+    .iniciofilho1 h5{
+        width: 22rem;
+        font-size: 2.3rem;
     }
 
     .iniciofilho1 {
@@ -1444,11 +1311,16 @@ main::before {
     .iniciofilho1 p {
         text-align: justify;
         width: 19.625rem;
-        padding-bottom: 2rem;
+        padding-bottom: 1.5rem;
     }
 
     .iniciofilho2 {
         width: 23rem;
+    }
+
+    .iniciofilho2 h5{
+          width: 22rem;
+        font-size: 2.3rem;
     }
 
 
@@ -1571,6 +1443,7 @@ main::before {
         font-weight: bold;
         font-size: 1.25rem;
         margin: 0;
+           width: auto;
     }
 
     .modelocardFilho p {
@@ -2314,134 +2187,250 @@ main::before {
         justify-self: center;
     }
 
-    /*MODAL*/
-
-    .modal {
-        width: min(46rem, calc(100% - 2rem));
-        max-height: calc(100vh - 2rem);
-        padding: 0;
-        border: 2px solid #24465C;
-        border-radius: 2rem;
-        background-color: #E8F1F4;
-        color: #142B3B;
-    }
-
-    .modal::backdrop {
-        background: rgb(20 43 59 / 60%);
-    }
-
-    .modalConteudo {
-        position: relative;
-        display: flex;
-        gap: 1.5rem;
-        padding: 1.75rem 2rem;
-    }
-
-    .modalConteudo--coluna {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .modal img {
-        width: 14rem;
-        height: 18rem;
-        object-fit: cover;
-        border-radius: 1.25rem;
-        flex-shrink: 0;
-    }
-
-    .modalTexto {
-        flex: 1;
-    }
-
-    .modal h3 {
-        margin: 0 0 0.5rem;
-        font-size: 1.5rem;
-    }
-
-    .modal h4 {
-        margin: 1rem 0 0.25rem;
-        font-size: 1rem;
-        color: #24465C;
-    }
-
-    .modal p {
-        margin: 0;
-        color: #24465C;
-    }
-
-    .modalLista {
-        margin: 0;
-        padding-left: 1.25rem;
-        color: #24465C;
-        font-size: 0.875rem;
-    }
-
-    .modalFechar {
-        position: absolute;
-        top: 0.75rem;
-        right: 0.75rem;
-        border: 0;
-        background: none;
-        color: #142B3B;
-        cursor: pointer;
-    }
-
-    .modalFechar i {
-        font-size: 1.25rem;
-    }
-
-    .confLista {
-        display: grid;
-        grid-template-columns: max-content 1fr;
-        gap: 0.5rem 1.25rem;
-        margin: 1rem 0 0;
-    }
-
-    .confLista dt {
-        font-weight: bold;
-    }
-
-    .confLista dd {
-        margin: 0;
-        overflow-wrap: anywhere;
-    }
-
-    .modalBotoes {
-        display: flex;
-        justify-content: flex-end;
-        gap: 0.75rem;
-        margin-top: 1.5rem;
-    }
-
-    .modalBotoes a,
-    .modalBotoes button {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        border-radius: 2rem;
-        font-weight: bold;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    .botaoSecundario {
-        background: transparent;
-        color: #142B3B;
-        border: 1.5px solid #142B3B;
-    }
-
-    .botaoPrincipal {
-        background-color: #0A6272;
-        color: #E8F1F4;
-        border: 1.5px solid #0A6272;
-    }
-
-    .modal ul {
-        margin: 0;
-        padding-left: 1.25rem;
-        color: #24465C;
-        font-size: 0.875rem;
-    }
+   
 }
+
+[hidden]{ display: none !important; }        /* obrigatório: sem ela o hidden não funciona nos elementos com display:flex */
+
+.modeloFiltro{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.filtroLista{ display: contents; }           /* os botões dos modelos entram na mesma linha de TODOS e Filtrar */
+
+.modeloFiltro button{
+    background-color: transparent;
+    color: #142B3B;
+    cursor: pointer;
+}
+
+.modeloFiltro button.ativo{
+    background-color: #142B3B;
+    color: #E8F1F4;
+}
+
+/* formulário */
+#linhaDetalhes{ justify-content: flex-start; }
+#linhaDetalhes select{ width: min(21rem, 100%); }
+
+.preenchaCard .rotuloCampo{
+    display: block;
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: #142B3B;
+}
+
+.listaAdicionais{ display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.35rem; }
+
+.preenchaCard .adicionalLinha{
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.preenchaCard .adicionalLinha span{ font-size: 0.875rem; color: #142B3B; }
+
+.preenchaCard .adicionalLinha input{
+    display: inline-block;
+    width: 4.5rem;
+    padding: 0.35rem 0.5rem;
+}
+
+.preenchaCard .adicionalLinha input[type="checkbox"]{
+    width: 1.1rem;
+    height: 1.1rem;
+    padding: 0;
+    accent-color: #0A6272;
+}
+
+/* ===== FILTRO + MODAL ===== */
+
+[hidden]{ display: none !important; }
+
+/* filtro: botões na mesma linha */
+.modeloFiltro{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+.filtroLista{ display: contents; }
+.modeloFiltro button{ background-color: transparent; color: #142B3B; cursor: pointer; }
+.modeloFiltro button.ativo{ background-color: #142B3B; color: #E8F1F4; }
+
+/* janela */
+.modal{
+    width: min(58rem, calc(100% - 2rem));
+    max-height: calc(100vh - 2rem);
+    padding: 0;
+    border: 0;
+    border-radius: 2rem;
+    background-color: #E8F1F4;
+    color: #142B3B;
+    overflow: auto;
+    box-shadow: 0 1.5rem 4rem rgb(20 43 59 / 40%);
+}
+.modal--pequeno{ width: min(34rem, calc(100% - 2rem)); }
+.modal::backdrop{ background: rgb(20 43 59 / 65%); }
+
+.modalFechar{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 0;
+    border-radius: 50%;
+    background-color: #E8F1F4;
+    color: #142B3B;
+    cursor: pointer;
+}
+.modalFechar i{ font-size: 1.1rem; }
+
+.modalConteudo{ display: flex; align-items: stretch; gap: 0; padding: 0; }
+
+/* coluna escura com a foto em arco, como no início do site */
+.modalLateral{
+    flex: 0 0 17rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    padding: 2rem 1.5rem;
+    background-color: #142B3B;
+}
+.modal .modalLateral img{
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border: 3px solid #0E7C8F;
+    border-radius: 999px 999px 1.25rem 1.25rem;
+}
+.modal .modalPreco{
+    margin: 0;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    background-color: #24465C;
+    color: #E8F1F4;
+    font-size: 0.875rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.modalTexto{ flex: 1; min-width: 0; padding: 2rem 2.25rem; }
+.modalEtiqueta{ font-size: 0.75rem; font-weight: bold; letter-spacing: 0.14em; color: #0E7C8F; }
+.modal h3{ margin: 0.25rem 0 0; font-size: 2rem; line-height: 1.1; color: #142B3B; }
+.modal .modalSubtitulo{ margin: 0.25rem 0 0; font-weight: bold; color: #0E7C8F; }
+.modal h4{
+    margin: 1.5rem 0 0.6rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #24465C;
+}
+.modal p{ margin: 0; color: #24465C; }
+
+/* cartões de espessura / estilo e valor */
+.modal .modalOpcoes{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.modalOpcoes li{
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.9rem 1rem;
+    background-color: #F0F5F6;
+    border: 1px solid #B7D0D8;
+    border-radius: 1.25rem;
+}
+.modal .modalOpcoes img{
+    width: 100%;
+    height: 6.5rem;
+    margin-bottom: 0.4rem;
+    object-fit: cover;
+    border-radius: 0.9rem;
+}
+.modalOpcoes strong{ color: #142B3B; }
+.modalOpcoes .valorOpcao{ font-size: 1.125rem; font-weight: bold; color: #0A6272; }
+.modalOpcoes small{ font-size: 0.8125rem; color: #24465C; }
+
+.modal .modalAdicionais{
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.modalAdicionais li{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.55rem 1rem;
+    border: 1.5px dashed #24465C;
+    border-radius: 1rem;
+    font-size: 0.9rem;
+    color: #142B3B;
+}
+.modalAdicionais b{ color: #0A6272; }
+.modal .modalObs{ margin-top: 1rem; font-size: 0.8125rem; }
+
+/* confirmação */
+.confLista{ display: grid; grid-template-columns: max-content 1fr; margin: 1.25rem 0 0; border-top: 1px solid #B7D0D8; }
+.confLista dt,
+.confLista dd{ padding: 0.6rem 0; border-bottom: 1px solid #B7D0D8; }
+.confLista dt{ padding-right: 1.5rem; font-weight: bold; color: #142B3B; }
+.confLista dd{ margin: 0; overflow-wrap: anywhere; color: #24465C; }
+.confLista dd.confValor{ font-size: 1.125rem; font-weight: bold; color: #0A6272; }
+
+/* botões */
+.modalBotoes{ display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.75rem; }
+.modalBotoes a,
+.modalBotoes button{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+.botaoSecundario{ background: transparent; color: #142B3B; border: 1.5px solid #142B3B; }
+.botaoPrincipal{ background-color: #0A6272; color: #E8F1F4; border: 1.5px solid #0A6272; }
+.botaoPrincipal:hover{ background-color: #0E7C8F; border-color: #0E7C8F; }
+
+@media (max-width: 768px){
+    .modalConteudo{ flex-direction: column; }
+    .modalLateral{ flex: none; flex-direction: row; justify-content: flex-start; padding: 1.25rem; }
+    .modal .modalLateral img{ width: 6.5rem; }
+    .modalTexto{ padding: 1.5rem 1.25rem; }
+    .modal h3{ font-size: 1.5rem; }
+    .modalBotoes{ flex-direction: column-reverse; }
+    .modalBotoes a,
+    .modalBotoes button{ justify-content: center; }
+}
+
+.filtroLista{ display: none; }
+.modeloFiltro.aberto .filtroLista{ display: contents; }
+
