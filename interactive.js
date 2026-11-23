@@ -95,8 +95,8 @@ botaoFiltrar.addEventListener('click', () => {
 const NUMERO_WHATSAPP = '5534992055886';   // 55 + DDD + número, só dígitos (número de teste)
 
 const MODELOS = {
-    boxBraids: {
-        nome: 'Box Braids',
+    goddessBraids: {
+        nome: 'Goddes Braids',
         subtitulo: 'Com cachos (Goddess Braids)',
         rotulo: 'Espessura',
         plural: 'Espessuras',
@@ -106,9 +106,8 @@ const MODELOS = {
             { nome: 'Espessura G', valor: 430 },
         ],
     },
-    frenchCurls: {
-        nome: 'French Curls',
-        subtitulo: 'Boho Curls',
+    bohoCurls: {
+        nome: 'Boho Curls',
         rotulo: 'Espessura',
         plural: 'Espessuras',
         opcoes: [
@@ -142,9 +141,8 @@ const MODELOS = {
             { nome: 'Adição de tranças', valor: 10, porUnidade: true },
         ],
     },
-    knotlessBraids: {
-        nome: 'Knotless Braids',
-        subtitulo: 'Com cachos (Gipsy)',
+    gipsy: {
+        nome: 'Gipsy',
         rotulo: 'Espessura',
         plural: 'Espessuras',
         opcoes: [
