@@ -106,7 +106,7 @@ main::before {
 
 .inicioPai {
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: flex-start;
     gap: 3rem;
     padding-bottom: 0.5rem;
@@ -137,7 +137,7 @@ main::before {
     color: #142B3B;
     margin: 0;
     padding-bottom: 1rem;
-    padding-top: 3rem ;
+    padding-top: 3rem;
 }
 
 .inicioPai h5 {
@@ -304,7 +304,7 @@ main::before {
 
 .modeloFiltro {
     align-self: flex-start !important;
-    padding-left:6rem;
+    padding-left: 6rem;
     padding-top: 1rem;
 
 }
@@ -707,7 +707,7 @@ main::before {
     width: 8.5rem;
     height: 8.5rem;
     object-fit: cover;
-    border:     3px solid #0E7C8F;
+    border: 3px solid #0E7C8F;
     border-radius: 1rem;
 }
 
@@ -1296,7 +1296,7 @@ main::before {
         padding-top: 0;
     }
 
-    .iniciofilho1 h5{
+    .iniciofilho1 h5 {
         width: 22rem;
         font-size: 2.3rem;
     }
@@ -1317,8 +1317,8 @@ main::before {
         width: 23rem;
     }
 
-    .iniciofilho2 h5{
-          width: 22rem;
+    .iniciofilho2 h5 {
+        width: 22rem;
         font-size: 2.3rem;
     }
 
@@ -1353,7 +1353,7 @@ main::before {
     .modeloPai h5 {
         font-size: 2rem;
         width: 22.375rem;
-      
+
     }
 
     .modeloMae1 {
@@ -1390,7 +1390,7 @@ main::before {
         margin-top: 0.5rem;
     }
 
-    .filtroLista{
+    .filtroLista {
         margin-top: 0.5rem;
     }
 
@@ -1406,7 +1406,7 @@ main::before {
     .modelocardFilho {
         gap: 1rem;
         width: 22.25rem;
-       height: auto;
+        height: auto;
         border-radius: 2rem;
         padding: 1rem;
     }
@@ -1442,7 +1442,7 @@ main::before {
         font-weight: bold;
         font-size: 1.25rem;
         margin: 0;
-           width: auto;
+        width: auto;
     }
 
     .modelocardFilho p {
@@ -1468,7 +1468,7 @@ main::before {
         padding-right: 0.25rem;
     }
 
-    .alinhamentoBotaoM{
+    .alinhamentoBotaoM {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1543,7 +1543,7 @@ main::before {
     .cfFilho3 {
         display: flex;
         justify-content: center;
-      
+
         background-color: #24465C;
         color: #E8F1F4;
         text-align: justify;
@@ -1577,7 +1577,7 @@ main::before {
 
     .cardMaeCF {
         display: grid !important;
-    grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         padding-top: 1rem;
         --circulo-cf: 2.5rem;
         --gap-cf: 0.25rem;
@@ -1704,7 +1704,7 @@ main::before {
         background-color: #0E7C8F;
         padding: 1rem;
         border-radius: 1.5rem;
-         width: 9rem;
+        width: 9rem;
         height: 15.5rem;
     }
 
@@ -2155,7 +2155,7 @@ main::before {
     }
 
     .rodapefilhoMeio p {
-      display: none !important;
+        display: none !important;
     }
 
     .rodapefilhoMeio a {
@@ -2175,7 +2175,7 @@ main::before {
     }
 
     .rodapefilhoFim p {
-      display: none !important;
+        display: none !important;
     }
 
     .alinhamentoIconeFooter {
@@ -2186,12 +2186,16 @@ main::before {
         justify-self: center;
     }
 
-   
+
 }
 
-[hidden]{ display: none !important; }        /* obrigatório: sem ela o hidden não funciona nos elementos com display:flex */
+[hidden] {
+    display: none !important;
+}
 
-.modeloFiltro{
+/* obrigatório: sem ela o hidden não funciona nos elementos com display:flex */
+
+.modeloFiltro {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -2200,33 +2204,47 @@ main::before {
     max-width: 100%;
 }
 
-.filtroLista{ display: contents; }           /* os botões dos modelos entram na mesma linha de TODOS e Filtrar */
+.filtroLista {
+    display: contents;
+}
 
-.modeloFiltro button{
+/* os botões dos modelos entram na mesma linha de TODOS e Filtrar */
+
+.modeloFiltro button {
     background-color: transparent;
     color: #142B3B;
     cursor: pointer;
 }
 
-.modeloFiltro button.ativo{
+.modeloFiltro button.ativo {
     background-color: #142B3B;
     color: #E8F1F4;
 }
 
 /* formulário */
-#linhaDetalhes{ justify-content: flex-start; }
-#linhaDetalhes select{ width: min(21rem, 100%); }
+#linhaDetalhes {
+    justify-content: flex-start;
+}
 
-.preenchaCard .rotuloCampo{
+#linhaDetalhes select {
+    width: min(21rem, 100%);
+}
+
+.preenchaCard .rotuloCampo {
     display: block;
     font-size: 0.875rem;
     font-weight: bold;
     color: #142B3B;
 }
 
-.listaAdicionais{ display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.35rem; }
+.listaAdicionais {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.35rem;
+}
 
-.preenchaCard .adicionalLinha{
+.preenchaCard .adicionalLinha {
     display: flex;
     align-items: center;
     gap: 0.6rem;
@@ -2234,15 +2252,18 @@ main::before {
     cursor: pointer;
 }
 
-.preenchaCard .adicionalLinha span{ font-size: 0.875rem; color: #142B3B; }
+.preenchaCard .adicionalLinha span {
+    font-size: 0.875rem;
+    color: #142B3B;
+}
 
-.preenchaCard .adicionalLinha input{
+.preenchaCard .adicionalLinha input {
     display: inline-block;
     width: 4.5rem;
     padding: 0.35rem 0.5rem;
 }
 
-.preenchaCard .adicionalLinha input[type="checkbox"]{
+.preenchaCard .adicionalLinha input[type="checkbox"] {
     width: 1.1rem;
     height: 1.1rem;
     padding: 0;
@@ -2251,10 +2272,12 @@ main::before {
 
 /* ===== FILTRO + MODAL ===== */
 
-[hidden]{ display: none !important; }
+[hidden] {
+    display: none !important;
+}
 
 /* filtro: botões na mesma linha */
-.modeloFiltro{
+.modeloFiltro {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -2262,12 +2285,24 @@ main::before {
     box-sizing: border-box;
     max-width: 100%;
 }
-.filtroLista{ display: contents; }
-.modeloFiltro button{ background-color: transparent; color: #142B3B; cursor: pointer; }
-.modeloFiltro button.ativo{ background-color: #142B3B; color: #E8F1F4; }
+
+.filtroLista {
+    display: contents;
+}
+
+.modeloFiltro button {
+    background-color: transparent;
+    color: #142B3B;
+    cursor: pointer;
+}
+
+.modeloFiltro button.ativo {
+    background-color: #142B3B;
+    color: #E8F1F4;
+}
 
 /* janela */
-.modal{
+.modal {
     width: min(58rem, calc(100% - 2rem));
     max-height: calc(100vh - 2rem);
     padding: 0;
@@ -2278,10 +2313,16 @@ main::before {
     overflow: auto;
     box-shadow: 0 1.5rem 4rem rgb(20 43 59 / 40%);
 }
-.modal--pequeno{ width: min(34rem, calc(100% - 2rem)); }
-.modal::backdrop{ background: rgb(20 43 59 / 65%); }
 
-.modalFechar{
+.modal--pequeno {
+    width: min(34rem, calc(100% - 2rem));
+}
+
+.modal::backdrop {
+    background: rgb(20 43 59 / 65%);
+}
+
+.modalFechar {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -2297,12 +2338,20 @@ main::before {
     color: #142B3B;
     cursor: pointer;
 }
-.modalFechar i{ font-size: 1.1rem; }
 
-.modalConteudo{ display: flex; align-items: stretch; gap: 0; padding: 0; }
+.modalFechar i {
+    font-size: 1.1rem;
+}
+
+.modalConteudo {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+}
 
 /* coluna escura com a foto em arco, como no início do site */
-.modalLateral{
+.modalLateral {
     flex: 0 0 17rem;
     display: flex;
     flex-direction: column;
@@ -2312,7 +2361,8 @@ main::before {
     padding: 2rem 1.5rem;
     background-color: #142B3B;
 }
-.modal .modalLateral img{
+
+.modal .modalLateral img {
     width: 100%;
     height: auto;
     aspect-ratio: 3 / 4;
@@ -2320,7 +2370,8 @@ main::before {
     border: 3px solid #0E7C8F;
     border-radius: 999px 999px 1.25rem 1.25rem;
 }
-.modal .modalPreco{
+
+.modal .modalPreco {
     margin: 0;
     padding: 0.5rem 1rem;
     border-radius: 2rem;
@@ -2331,21 +2382,47 @@ main::before {
     text-align: center;
 }
 
-.modalTexto{ flex: 1; min-width: 0; padding: 2rem 2.25rem; }
-.modalEtiqueta{ font-size: 0.75rem; font-weight: bold; letter-spacing: 0.14em; color: #0E7C8F; }
-.modal h3{ margin: 0.25rem 0 0; font-size: 2rem; line-height: 1.1; color: #142B3B; }
-.modal .modalSubtitulo{ margin: 0.25rem 0 0; font-weight: bold; color: #0E7C8F; }
-.modal h4{
+.modalTexto {
+    flex: 1;
+    min-width: 0;
+    padding: 2rem 2.25rem;
+}
+
+.modalEtiqueta {
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.14em;
+    color: #0E7C8F;
+}
+
+.modal h3 {
+    margin: 0.25rem 0 0;
+    font-size: 2rem;
+    line-height: 1.1;
+    color: #142B3B;
+}
+
+.modal .modalSubtitulo {
+    margin: 0.25rem 0 0;
+    font-weight: bold;
+    color: #0E7C8F;
+}
+
+.modal h4 {
     margin: 1.5rem 0 0.6rem;
     font-size: 0.8125rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #24465C;
 }
-.modal p{ margin: 0; color: #24465C; }
+
+.modal p {
+    margin: 0;
+    color: #24465C;
+}
 
 /* cartões de espessura / estilo e valor */
-.modal .modalOpcoes{
+.modal .modalOpcoes {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
     gap: 0.75rem;
@@ -2353,7 +2430,8 @@ main::before {
     padding: 0;
     list-style: none;
 }
-.modalOpcoes li{
+
+.modalOpcoes li {
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
@@ -2362,18 +2440,31 @@ main::before {
     border: 1px solid #B7D0D8;
     border-radius: 1.25rem;
 }
-.modal .modalOpcoes img{
+
+.modal .modalOpcoes img {
     width: 100%;
     height: 6.5rem;
     margin-bottom: 0.4rem;
     object-fit: cover;
     border-radius: 0.9rem;
 }
-.modalOpcoes strong{ color: #142B3B; }
-.modalOpcoes .valorOpcao{ font-size: 1.125rem; font-weight: bold; color: #0A6272; }
-.modalOpcoes small{ font-size: 0.8125rem; color: #24465C; }
 
-.modal .modalAdicionais{
+.modalOpcoes strong {
+    color: #142B3B;
+}
+
+.modalOpcoes .valorOpcao {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #0A6272;
+}
+
+.modalOpcoes small {
+    font-size: 0.8125rem;
+    color: #24465C;
+}
+
+.modal .modalAdicionais {
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
@@ -2381,7 +2472,8 @@ main::before {
     padding: 0;
     list-style: none;
 }
-.modalAdicionais li{
+
+.modalAdicionais li {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
@@ -2391,21 +2483,58 @@ main::before {
     font-size: 0.9rem;
     color: #142B3B;
 }
-.modalAdicionais b{ color: #0A6272; }
-.modal .modalObs{ margin-top: 1rem; font-size: 0.8125rem; }
+
+.modalAdicionais b {
+    color: #0A6272;
+}
+
+.modal .modalObs {
+    margin-top: 1rem;
+    font-size: 0.8125rem;
+}
 
 /* confirmação */
-.confLista{ display: grid; grid-template-columns: max-content 1fr; margin: 1.25rem 0 0; border-top: 1px solid #B7D0D8; }
+.confLista {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    margin: 1.25rem 0 0;
+    border-top: 1px solid #B7D0D8;
+}
+
 .confLista dt,
-.confLista dd{ padding: 0.6rem 0; border-bottom: 1px solid #B7D0D8; }
-.confLista dt{ padding-right: 1.5rem; font-weight: bold; color: #142B3B; }
-.confLista dd{ margin: 0; overflow-wrap: anywhere; color: #24465C; }
-.confLista dd.confValor{ font-size: 1.125rem; font-weight: bold; color: #0A6272; }
+.confLista dd {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #B7D0D8;
+}
+
+.confLista dt {
+    padding-right: 1.5rem;
+    font-weight: bold;
+    color: #142B3B;
+}
+
+.confLista dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+    color: #24465C;
+}
+
+.confLista dd.confValor {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #0A6272;
+}
 
 /* botões */
-.modalBotoes{ display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.75rem; }
+.modalBotoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+}
+
 .modalBotoes a,
-.modalBotoes button{
+.modalBotoes button {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -2415,21 +2544,85 @@ main::before {
     text-decoration: none;
     cursor: pointer;
 }
-.botaoSecundario{ background: transparent; color: #142B3B; border: 1.5px solid #142B3B; }
-.botaoPrincipal{ background-color: #0A6272; color: #E8F1F4; border: 1.5px solid #0A6272; }
-.botaoPrincipal:hover{ background-color: #0E7C8F; border-color: #0E7C8F; }
 
-@media (max-width: 768px){
-    .modalConteudo{ flex-direction: column; }
-    .modalLateral{ flex: none; flex-direction: row; justify-content: flex-start; padding: 1.25rem; }
-    .modal .modalLateral img{ width: 6.5rem; }
-    .modalTexto{ padding: 1.5rem 1.25rem; }
-    .modal h3{ font-size: 1.5rem; }
-    .modalBotoes{ flex-direction: column-reverse; }
-    .modalBotoes a,
-    .modalBotoes button{ justify-content: center; }
+.botaoSecundario {
+    background: transparent;
+    color: #142B3B;
+    border: 1.5px solid #142B3B;
 }
 
-.filtroLista{ display: none; }
-.modeloFiltro.aberto .filtroLista{ display: contents; }
+.botaoPrincipal {
+    background-color: #0A6272;
+    color: #E8F1F4;
+    border: 1.5px solid #0A6272;
+}
 
+.botaoPrincipal:hover {
+    background-color: #0E7C8F;
+    border-color: #0E7C8F;
+}
+
+@media (max-width: 768px) {
+    .modalConteudo {
+        flex-direction: column;
+    }
+
+    .modalLateral {
+        flex: none;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 1.25rem;
+    }
+
+    .modal .modalLateral img {
+        width: 6.5rem;
+    }
+
+    .modalTexto {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .modal h3 {
+        font-size: 1.5rem;
+    }
+
+    .modalBotoes {
+        flex-direction: column-reverse;
+    }
+
+    .modalBotoes a,
+    .modalBotoes button {
+        justify-content: center;
+    }
+}
+
+.filtroLista {
+    display: none;
+}
+
+.modeloFiltro.aberto .filtroLista {
+    display: contents;
+}
+
+/* Calendário da data no formulário */
+.flatpickr-calendar {
+    font-family: 'DM Sans', sans-serif;
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.selected:hover {
+    background: #0E7C8F;
+    border-color: #0E7C8F;
+    color: #fff;
+}
+
+.flatpickr-day.today:not(.selected) {
+    border-color: #0E7C8F;
+}
+
+.flatpickr-day.flatpickr-disabled,
+.flatpickr-day.flatpickr-disabled:hover {
+    color: #9AA9B1;
+    text-decoration: line-through;
+    cursor: not-allowed;
+}

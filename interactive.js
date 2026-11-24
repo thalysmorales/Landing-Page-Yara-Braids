@@ -211,9 +211,66 @@ const campoObs = document.getElementById('observacoes');
 selServico.length = 1;   // mantém só "Selecione o serviço"
 Object.entries(MODELOS).forEach(([chave, m]) => selServico.add(new Option(m.nome, chave)));
 
-// não deixa escolher data que já passou
-const hoje = new Date();
-campoData.min = `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, '0')}-${String(hoje.getDate()).padStart(2, '0')}`;
+/* ===== CALENDÁRIO DA DATA (Flatpickr) + DIAS INDISPONÍVEIS ===== */
+
+// "AAAA-MM-DD" pela data LOCAL. Nunca toISOString(): ele usa UTC e erraria o dia à noite no Brasil.
+function chaveLocal(data) {
+    return `${data.getFullYear()}-${String(data.getMonth() + 1).padStart(2, '0')}-${String(data.getDate()).padStart(2, '0')}`;
+}
+
+// Dias "bloqueado" ou "agendado" vindos do servidor. Começa vazio: se a busca falhar, tudo fica livre.
+const diasIndisponiveis = new Set();
+let fpData = null;                 // instância do Flatpickr (null se a biblioteca não carregou)
+let campoDataVisivel = campoData;  // campo que a cliente enxerga (muda para o altInput quando há Flatpickr)
+
+if (typeof flatpickr === 'function') {
+    fpData = flatpickr(campoData, {
+        locale: 'pt',
+        dateFormat: 'Y-m-d',   // valor interno, o mesmo que o código antigo espera
+        altInput: true,        // campo visível mostra DD/MM/AAAA
+        altFormat: 'd/m/Y',
+        minDate: 'today',      // hoje pela data local
+        disableMobile: true,   // o seletor nativo do celular não consegue desativar dias específicos
+        allowInput: false,
+        disable: [(data) => diasIndisponiveis.has(chaveLocal(data))],
+    });
+    campoDataVisivel = fpData.altInput;
+    campoDataVisivel.id = 'dataVisivel';
+    // O <label for="data"> passa a apontar para o campo visível.
+    const rotuloData = document.querySelector('label[for="data"]');
+    if (rotuloData) rotuloData.htmlFor = 'dataVisivel';
+    carregarAgenda();
+} else {
+    // Plano B: se o Flatpickr não carregou, o campo de data nativo continua funcionando.
+    campoData.min = chaveLocal(new Date());
+}
+
+// Busca os dias indisponíveis. Qualquer falha (rede, erro, resposta estranha) é ignorada:
+// o agendamento nunca pode quebrar por causa disso.
+async function carregarAgenda() {
+    const controle = new AbortController();
+    const limite = setTimeout(() => controle.abort(), 8000);
+    try {
+        const resposta = await fetch('/api/agenda', { signal: controle.signal });
+        if (!resposta.ok) return;
+        const json = await resposta.json();
+        if (!json || typeof json.dias !== 'object' || json.dias === null || Array.isArray(json.dias)) return;
+
+        diasIndisponiveis.clear();
+        Object.entries(json.dias).forEach(([dia, estado]) => {
+            if (/^\d{4}-\d{2}-\d{2}$/.test(dia) && (estado === 'bloqueado' || estado === 'agendado')) {
+                diasIndisponiveis.add(dia);
+            }
+        });
+        // Se a cliente já tinha escolhido um dia que acabou de ficar indisponível, limpa a escolha.
+        if (diasIndisponiveis.has(campoData.value)) fpData.clear();
+        fpData.redraw(); // redesenha o calendário aplicando os dias desativados
+    } catch (erro) {
+        /* sem internet ou tempo esgotado: segue com todos os dias livres */
+    } finally {
+        clearTimeout(limite);
+    }
+}
 
 // mostra o segundo campo (e os adicionais) só quando o modelo tem opções
 function atualizarDetalhes() {
@@ -353,7 +410,7 @@ function enviarSolicitacao() {
     if (!campoNome.value.trim()) faltando.push({ rotulo: 'Nome completo', el: campoNome });
     if (!m) faltando.push({ rotulo: 'Modelo desejado', el: selServico });
     else if (!selOpcao.value) faltando.push({ rotulo: m.rotulo, el: selOpcao });
-    if (!campoData.value) faltando.push({ rotulo: 'Data', el: campoData });
+    if (!campoData.value) faltando.push({ rotulo: 'Data', el: campoDataVisivel });
     if (!campoHora.value) faltando.push({ rotulo: 'Hora', el: campoHora });
 
     if (faltando.length) {
@@ -361,9 +418,16 @@ function enviarSolicitacao() {
         faltando[0].el.focus();
         return;
     }
-    if (campoData.value < campoData.min) {
+    if (campoData.value < chaveLocal(new Date())) {
         alert('Escolha uma data a partir de hoje.');
-        campoData.focus();
+        campoDataVisivel.focus();
+        return;
+    }
+    // Última barreira: se o dia ficou indisponível depois de escolhido, não deixa enviar.
+    if (diasIndisponiveis.has(campoData.value)) {
+        alert('Esse dia não está disponível. Escolha outra data.');
+        fpData.clear();
+        campoDataVisivel.focus();
         return;
     }
 
@@ -407,7 +471,11 @@ formulario.addEventListener('submit', e => e.preventDefault());
 formulario.addEventListener('keydown', (e) => {
     if (e.key !== 'Enter' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'BUTTON') return;
     e.preventDefault();
-    const campos = [...formulario.querySelectorAll('input, select, textarea')].filter(c => !c.closest('[hidden]'));
+    // O Flatpickr reabre o calendário no Enter; fechamos logo depois de todos os handlers dele.
+    if (fpData && e.target === campoDataVisivel) setTimeout(() => fpData.close(), 0);
+    // type "hidden" fora da lista: o campo original da data é hidden e não pode receber foco.
+    const campos = [...formulario.querySelectorAll('input, select, textarea')]
+        .filter(c => !c.closest('[hidden]') && c.type !== 'hidden');
     const proximo = campos[campos.indexOf(e.target) + 1];
     if (proximo) proximo.focus();
 });

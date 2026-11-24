@@ -1,0 +1,388 @@
+/* =====================================================================
+   admin.css  (ARQUIVO NOVO)
+
+   Reaproveita do style.css do site: a fonte DM Sans, as cores (#142B3B,
+   #24465C, #0A6272, #0E7C8F, #B7D0D8, #E8F1F4, #F0F5F6), os cantos bem
+   arredondados e as ondas sutis de fundo (img/ondas.png a 4,5%).
+   Pensado primeiro para celular; o computador é a exceção (media query).
+   ===================================================================== */
+
+:root {
+    /* Cores que já existem no style.css do site */
+    --marinho: #142B3B;
+    --azul: #24465C;
+    --petroleo: #0A6272;
+    --teal: #0E7C8F;
+    --claro: #B7D0D8;
+    --fundo: #E8F1F4;
+    --cartao: #F0F5F6;
+
+    /* Cinza-azulado neutro para "bloqueado": bem diferente do teal e legível
+       (texto #3A4953 sobre #D3DADE tem contraste acima de 7:1) */
+    --bloqueado-fundo: #D3DADE;
+    --bloqueado-borda: #8796A0;
+    --bloqueado-texto: #3A4953;
+
+    --erro: #9B2C2C;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    background-color: var(--fundo);
+    color: var(--marinho);
+    font-family: 'DM Sans', sans-serif;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* Ondas sutis do site, fixas no fundo, por trás de tudo */
+.pagina {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+.pagina::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: url("img/ondas.png") center top / 100% 100% no-repeat;
+    opacity: 0.045;
+}
+
+/* ===== Topo ===== */
+.topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 66rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    height: 4.5rem;
+    background-color: var(--marinho);
+    border-radius: 32rem;
+    box-shadow: 0 0.5rem 1.5rem rgb(20 43 59 / 25%);
+}
+
+.topo img {
+    width: 7.5rem;
+    height: 3.75rem;
+    object-fit: cover;
+}
+
+.botaoSair {
+    padding: 0.6rem 1.1rem;
+    background: transparent;
+    color: var(--fundo);
+    border: 1px solid var(--fundo);
+    border-radius: 32rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.botaoSair:hover {
+    background-color: var(--azul);
+}
+
+/* ===== Cartões ===== */
+main {
+    max-width: 66rem;
+    margin: 1.5rem auto 3rem;
+}
+
+.cartao {
+    background-color: var(--cartao);
+    border: 1px solid var(--marinho);
+    border-radius: 2rem;
+    padding: 1.5rem 1.25rem;
+}
+
+.cartao h1 {
+    margin: 0 0 0.35rem;
+    font-size: 1.9rem;
+    line-height: 1.15;
+    color: var(--marinho);
+}
+
+.cartao p {
+    margin: 0;
+    color: var(--azul);
+}
+
+/* ===== Login ===== */
+.cartaoLogin {
+    max-width: 26rem;
+    margin: 0 auto;
+    background-color: var(--claro);
+    border: 2px solid var(--azul);
+}
+
+.cartaoLogin form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+}
+
+.cartaoLogin label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--marinho);
+}
+
+.cartaoLogin input {
+    padding: 0.8rem 1rem;
+    background-color: var(--fundo);
+    color: var(--azul);
+    border: 1px solid var(--azul);
+    border-radius: 1rem;
+}
+
+.botaoPrincipal {
+    margin-top: 0.5rem;
+    padding: 0.9rem 1.25rem;
+    background-color: var(--petroleo);
+    color: var(--fundo);
+    border: 0;
+    border-radius: 2rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.botaoPrincipal:hover {
+    background-color: var(--teal);
+}
+
+.botaoPrincipal:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+input:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--teal);
+    outline-offset: 2px;
+}
+
+.mensagemErro {
+    min-height: 1.25rem;
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--erro) !important;
+}
+
+/* ===== Painel ===== */
+.painelTopo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.indicador {
+    padding: 0.4rem 0.9rem;
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    background-color: var(--petroleo);
+    color: #fff !important;
+}
+
+.indicador[data-estado="salvando"] {
+    background-color: var(--azul);
+}
+
+.indicador[data-estado="erro"] {
+    background-color: var(--erro);
+}
+
+/* ===== Legenda ===== */
+.legenda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.25rem;
+    margin: 1.1rem 0 0.75rem;
+    padding: 0;
+    list-style: none;
+    font-size: 0.875rem;
+    color: var(--marinho);
+}
+
+.legenda li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.amostra {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.7rem;
+    border: 1px solid var(--claro);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.amostraLivre {
+    background-color: #fff;
+    color: var(--marinho);
+}
+
+.amostraBloqueado {
+    background-color: var(--bloqueado-fundo);
+    border-color: var(--bloqueado-borda);
+    color: var(--bloqueado-texto);
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+}
+
+.amostraAgendado {
+    background-color: var(--teal);
+    border-color: var(--teal);
+    color: #fff;
+}
+
+.amostraPassado {
+    background-color: #fff;
+    color: #9AA9B1;
+}
+
+/* ===== Calendário (ajustes sobre o Flatpickr) ===== */
+.calendarioBox {
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+}
+
+/* Fonte do site em todo o calendário */
+.flatpickr-calendar,
+.flatpickr-calendar * {
+    font-family: 'DM Sans', sans-serif;
+}
+
+.flatpickr-calendar.inline {
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--claro);
+    border-radius: 1.25rem;
+    box-shadow: none;
+}
+
+.flatpickr-calendar .flatpickr-month,
+.flatpickr-calendar .flatpickr-current-month,
+.flatpickr-calendar .flatpickr-current-month .cur-month,
+.flatpickr-calendar .flatpickr-current-month input.cur-year {
+    color: var(--marinho);
+    fill: var(--marinho);
+    font-weight: 700;
+}
+
+.flatpickr-calendar span.flatpickr-weekday {
+    color: var(--azul);
+    font-weight: 700;
+}
+
+.flatpickr-calendar .flatpickr-prev-month svg,
+.flatpickr-calendar .flatpickr-next-month svg {
+    fill: var(--marinho);
+}
+
+/* Dias do mês anterior/seguinte aparecem como "buracos" para não duplicar números */
+.flatpickr-calendar .flatpickr-day.prevMonthDay,
+.flatpickr-calendar .flatpickr-day.nextMonthDay {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Dia livre (padrão): alvo de toque confortável (44 px) */
+.flatpickr-calendar .flatpickr-day {
+    max-width: none;
+    height: 2.75rem;
+    line-height: 2.65rem;
+    color: var(--marinho);
+    border-radius: 0.9rem;
+}
+
+.flatpickr-calendar .flatpickr-day:hover,
+.flatpickr-calendar .flatpickr-day:focus {
+    background-color: #DCEBEF;
+    border-color: var(--claro);
+    color: var(--marinho);
+}
+
+.flatpickr-calendar .flatpickr-day.today {
+    border-color: var(--marinho);
+}
+
+/* Dia passado: desativado */
+.flatpickr-calendar .flatpickr-day.flatpickr-disabled,
+.flatpickr-calendar .flatpickr-day.flatpickr-disabled:hover {
+    color: #9AA9B1;
+    background: transparent;
+    border-color: transparent;
+    cursor: not-allowed;
+}
+
+/* Bloqueado: cinza-azulado + número riscado (a forma ajuda quem não distingue cores) */
+.flatpickr-calendar .flatpickr-day.diaBloqueado,
+.flatpickr-calendar .flatpickr-day.diaBloqueado:hover,
+.flatpickr-calendar .flatpickr-day.diaBloqueado:focus {
+    background-color: var(--bloqueado-fundo);
+    border-color: var(--bloqueado-borda);
+    color: var(--bloqueado-texto);
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+}
+
+/* Agendado: teal da Yara com número branco */
+.flatpickr-calendar .flatpickr-day.diaAgendado,
+.flatpickr-calendar .flatpickr-day.diaAgendado:hover,
+.flatpickr-calendar .flatpickr-day.diaAgendado:focus {
+    background-color: var(--teal);
+    border-color: var(--teal);
+    color: #fff;
+    font-weight: 700;
+}
+
+/* Celular e tablet: 1 mês ocupando a largura toda do cartão.
+   (O admin.js só mostra 3 meses a partir de 1100 px; abaixo disso é 1 mês.) */
+@media (max-width: 1099.98px) {
+
+    .flatpickr-calendar.inline,
+    .flatpickr-calendar.inline .flatpickr-days,
+    .flatpickr-calendar.inline .dayContainer {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .cartao {
+        padding: 2rem 2.25rem;
+    }
+}
